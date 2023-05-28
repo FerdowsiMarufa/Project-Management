@@ -324,7 +324,7 @@ function displayTopSalesField(
      <i class="fa-solid fa-plus" onclick="addBottomFieldRow('${encodeURIComponent(
        JSON.stringify(materialData)
      )}')"></i>
-     <i class="fa-solid fa-trash deleteButtonBottomField" onclick=deleteBottomFieldRow()></i>
+     <i class="fa-solid fa-trash deleteButtonBottomField" onclick="deleteBottomFielOneRow()"></i>
    </div>
 
 
@@ -476,7 +476,35 @@ function addBottomFieldRow(GoodsString) {
   var SalesPerson = document.querySelector(".SalesOrderPerson").value;
   var SalesType = document.querySelector(".SalesOrderSalesType").value;
   var StoreName = document.querySelector(".SalesOrderStoreName").value;
+
+  // var detailsTableRow = document.querySelector(".detailstableRow");
+  // console.log("details table length: ", detailsTableRow);
+
+  const detailstableRow = document.querySelectorAll(".detailstableRow");
+  console.log("lengthsdfjh", detailstableRow);
+
   AddBottomFieldRowdata(GoodsData);
+
+  // validation for giving row creation
+  // if (
+  //   detailstableRow.length > 0 && // Check if there is at least one row
+  //   (detailstableRow[detailstableRow.length - 1].querySelector(".goodsName").textContent === "Nut"
+  //   ||
+  //   detailstableRow[detailstableRow.length - 1].querySelector(".UnitSetId input").value.trim() !== ""
+  //   ||
+  //   detailstableRow[detailstableRow.length - 1].querySelector(".UnitId input").value.trim() !== "" ||
+  //   // detailstableRow[detailstableRow.length - 1].querySelector(".StockQuantity").textContent !== "" ||
+  //   detailstableRow[detailstableRow.length - 1].querySelector(".Quantity input").value.trim() !== "" ||
+  //   detailstableRow[detailstableRow.length - 1].querySelector(".Rate input").value.trim() !== "" ||
+  //   detailstableRow[detailstableRow.length - 1].querySelector(".discountPcts input").value.trim() !== "" ||
+  //   detailstableRow[detailstableRow.length - 1].querySelector(".discountAmount input").value.trim() !== "" ||
+  //   detailstableRow[detailstableRow.length - 1].querySelector(".remarks input").value.trim() !== "")
+  // ) {
+  //   alert("Fill the row");
+  // } else {
+  //   AddBottomFieldRowdata(GoodsData);
+  // }
+
   // if (
   //   salesOrderIdInput != "" &&
   //   salesOderID != "" &&
@@ -499,7 +527,7 @@ function AddBottomFieldRowdata(GoodsData) {
 
   // Create a new row element
   var newRow = document.createElement("div");
-  newRow.className = "row bottomRow";
+  newRow.className = "row bottomRow detailstableRow";
 
   newRow.innerHTML = `
     <div class="col col-auto" onclick="ShowGoodsData('${encodeURIComponent(
@@ -597,22 +625,49 @@ function tableValueForGoods(event, goodsId, goodsName, StockQuantity) {
 }
 // deleting the row
 
-function deleteBottomFieldRow() {
+// =========================working heree ........... to delete row
+// function deleteBottomFielOneRow() {
+//  // Assuming you have a button with a class "deleteButton" that triggers the row deletion
+//   const deleteButton = document.querySelector(".deleteButtonBottomField");
+
+//   // Add event listeners to the delete buttons
+
+//   deleteButton.addEventListener("click", deleteRow);
+
+//   // Function to delete the row
+//   function deleteRow(event) {
+//     const button = event.target;
+//     const row = button.closest(".row");
+
+//     // Remove the row element from the DOM
+//     row.remove();
+//   }
+
+//    console.log("fsdahsfdhdf");
+
+// }
+
+function deleteBottomFielOneRow() {
   // Assuming you have a button with a class "deleteButton" that triggers the row deletion
   const deleteButton = document.querySelector(".deleteButtonBottomField");
 
   // Add event listeners to the delete buttons
-
   deleteButton.addEventListener("click", deleteRow);
 
-  // Function to delete the row
+  // Function to handle the delete event
   function deleteRow(event) {
     const button = event.target;
     const row = button.closest(".row");
 
-    // Remove the row element from the DOM
-    row.remove();
+    // Create a <delete> element
+    const deleteElement = document.createElement("delete");
+    deleteElement.textContent = "Delete";
+
+    // Replace the row element with the <delete> element
+    row.parentNode.replaceChild(deleteElement, row);
   }
+
+  console.log("fsdahsfdhdf");
 }
 
 // Sales offer
@@ -671,8 +726,11 @@ function GetingAllSalesOffer() {
 }
 
 function CreateNewSalesOrder() {
+  console.log("fhdsgfshdg");
   document.querySelector(".SalesOrderId").placeholder = "****<< NEW >>****";
   document.querySelector(".SalesOrderNo").placeholder = "****<< NEW >>****";
+
+  Clear();
 }
 
 // saved marufa.........................
@@ -912,8 +970,8 @@ function fetchData(salesOrderId) {
 function Clear() {
   // Sales Order Master
   // SalesOrderMasterId
-  document.querySelector(".SalesOrderId").placeholder = " ";
-  document.querySelector(".SalesOrderNo").placeholder = " ";
+  // document.querySelector(".SalesOrderId").placeholder = " ";
+  // document.querySelector(".SalesOrderNo").placeholder = " ";
   document.querySelector(".SalesOrderId").value = "";
   // DisplayNo
   document.querySelector(".SalesOrderNo").value = "";
@@ -944,24 +1002,21 @@ function Clear() {
   //SalesOfferDetailsId
   document.querySelector(".SalesOrderOffer").value = "";
 
-  const BottomRows = document.querySelectorAll(".bottomRow");
-  const dat = [];
-  console.log(BottomRows);
-  for (let i = 0; i < BottomRows.length; i++) {
-    const BottomCols = BottomRows[i].querySelectorAll(".bottomCol");
-
-    // Clear the values of each column in the current row
-    BottomCols[0].innerText = "";
-    BottomCols[3].innerText = "";
-    BottomCols[8].innerText = "";
-    BottomCols[4].querySelector("input").value = "";
-    BottomCols[5].querySelector("input").value = "";
-    BottomCols[6].querySelector("input").value = "";
-    BottomCols[7].querySelector("input").value = "";
-    BottomCols[9].querySelector("input").value = "";
-  }
-  // document.querySelector(".bottomField").innerHTML = "";
+  bottomClear();
 }
+
+//  bottom rows will be clear.......
+
+function bottomClear() {
+  const BottomRows = document.querySelectorAll(".bottomRow");
+
+  console.log("bottom rows length:  ", BottomRows.length);
+
+  for (let i = 0; i < BottomRows.length; i++) {
+    BottomRows[i].remove();
+  }
+}
+
 // end===============================
 
 //BY shihab===========================================================
