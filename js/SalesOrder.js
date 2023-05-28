@@ -324,7 +324,7 @@ function displayTopSalesField(
      <i class="fa-solid fa-plus" onclick="addBottomFieldRow('${encodeURIComponent(
        JSON.stringify(materialData)
      )}')"></i>
-     <i class="fa-solid fa-trash deleteButtonBottomField" onclick=deleteBottomFieldRow()></i>
+     <i class="fa-solid fa-trash deleteButtonBottomField" onclick="deleteBottomFielOneRow()"></i>
    </div>
 
 
@@ -478,6 +478,8 @@ function Saledropdown(
 //checking the field is null or not
 
 function addBottomFieldRow(GoodsString) {
+
+
   var GoodsData = JSON.parse(decodeURIComponent(GoodsString));
   console.log("Goodstring AddBottomFieldRow ", GoodsData);
   const salesOrderIdInput = document.querySelector(".SalesOrderId").value;
@@ -490,7 +492,39 @@ function addBottomFieldRow(GoodsString) {
   var SalesPerson = document.querySelector(".SalesOrderPerson").value;
   var SalesType = document.querySelector(".SalesOrderSalesType").value;
   var StoreName = document.querySelector(".SalesOrderStoreName").value;
+  
+
+
+  // var detailsTableRow = document.querySelector(".detailstableRow");
+  // console.log("details table length: ", detailsTableRow);
+
+  
+const detailstableRow = document.querySelectorAll(".detailstableRow");
+  console.log("lengthsdfjh",detailstableRow);
+
   AddBottomFieldRowdata(GoodsData);
+
+// validation for giving row creation 
+  // if (
+  //   detailstableRow.length > 0 && // Check if there is at least one row
+  //   (detailstableRow[detailstableRow.length - 1].querySelector(".goodsName").textContent === "Nut" 
+  //   ||
+  //   detailstableRow[detailstableRow.length - 1].querySelector(".UnitSetId input").value.trim() !== "" 
+  //   ||
+  //   detailstableRow[detailstableRow.length - 1].querySelector(".UnitId input").value.trim() !== "" ||
+  //   // detailstableRow[detailstableRow.length - 1].querySelector(".StockQuantity").textContent !== "" ||
+  //   detailstableRow[detailstableRow.length - 1].querySelector(".Quantity input").value.trim() !== "" ||
+  //   detailstableRow[detailstableRow.length - 1].querySelector(".Rate input").value.trim() !== "" ||
+  //   detailstableRow[detailstableRow.length - 1].querySelector(".discountPcts input").value.trim() !== "" ||
+  //   detailstableRow[detailstableRow.length - 1].querySelector(".discountAmount input").value.trim() !== "" ||
+  //   detailstableRow[detailstableRow.length - 1].querySelector(".remarks input").value.trim() !== "")
+  // ) {
+  //   alert("Fill the row");
+  // } else {
+  //   AddBottomFieldRowdata(GoodsData);
+  // }
+  
+
   // if (
   //   salesOrderIdInput != "" &&
   //   salesOderID != "" &&
@@ -513,7 +547,8 @@ function AddBottomFieldRowdata(GoodsData) {
 
   // Create a new row element
   var newRow = document.createElement("div");
-  newRow.className = "row bottomRow";
+  newRow.className = "row bottomRow detailstableRow";
+
 
   newRow.innerHTML = `
     <div class="col col-auto" onclick="ShowGoodsData('${encodeURIComponent(
@@ -565,7 +600,12 @@ function AddBottomFieldRowdata(GoodsData) {
       totalValueDiv.textContent = totalValue.toFixed(2);
     }
   }
+
 }
+
+
+
+
 
 function ShowGoodsData(GoodsString) {
   document.querySelector("#popupSale").classList.toggle("active");
@@ -596,6 +636,9 @@ function ShowGoodsData(GoodsString) {
   }
 }
 
+
+
+
 function tableValueForGoods(event, goodsId, goodsName, StockQuantity) {
   console.log("Clicked goodsId:", goodsId);
   console.log("Clicked goodsName:", goodsName);
@@ -611,23 +654,64 @@ function tableValueForGoods(event, goodsId, goodsName, StockQuantity) {
 }
 // deleting the row
 
-function deleteBottomFieldRow() {
+
+// =========================working heree ........... to delete row
+// function deleteBottomFielOneRow() {
+//  // Assuming you have a button with a class "deleteButton" that triggers the row deletion
+//   const deleteButton = document.querySelector(".deleteButtonBottomField");
+
+//   // Add event listeners to the delete buttons
+
+//   deleteButton.addEventListener("click", deleteRow);
+
+//   // Function to delete the row
+//   function deleteRow(event) {
+//     const button = event.target;
+//     const row = button.closest(".row");
+
+//     // Remove the row element from the DOM
+//     row.remove();
+//   }
+
+
+//    console.log("fsdahsfdhdf");
+
+// }
+
+
+function deleteBottomFielOneRow() {
   // Assuming you have a button with a class "deleteButton" that triggers the row deletion
   const deleteButton = document.querySelector(".deleteButtonBottomField");
 
   // Add event listeners to the delete buttons
-
   deleteButton.addEventListener("click", deleteRow);
 
-  // Function to delete the row
+  // Function to handle the delete event
   function deleteRow(event) {
     const button = event.target;
     const row = button.closest(".row");
 
-    // Remove the row element from the DOM
-    row.remove();
+    // Create a <delete> element
+    const deleteElement = document.createElement("delete");
+    deleteElement.textContent = "Delete";
+
+    // Replace the row element with the <delete> element
+    row.parentNode.replaceChild(deleteElement, row);
   }
+
+  console.log("fsdahsfdhdf");
 }
+
+
+
+
+
+
+
+
+
+
+
 
 // Sales offer
 
@@ -832,35 +916,25 @@ function Clear() {
   document.querySelector(".SalesOrderOffer").value = "";
 
 
+  buttomClear();
 
 
-  const BottomRows = document.querySelectorAll(".bottomRow");
-
-  // const dat = [];
-  console.log("bottom rows length:  " , BottomRows.length);
-  for (let i = 0; i < BottomRows.length; i++) {
-    // const BottomCols = BottomRows[i].querySelectorAll(".bottomCol");
-
-    //Clear the values of each column in the current row
-    // BottomCols[0].innerText = "";
-    // BottomCols[1].querySelector("input").value = "";
-    // BottomCols[2].querySelector("input").value = "";
-    // BottomCols[3].innerText = "";
-    // BottomCols[8].innerText = "";
-    // BottomCols[4].querySelector("input").value = "";
-    // BottomCols[5].querySelector("input").value = "";
-    // BottomCols[6].querySelector("input").value = "";
-    // BottomCols[7].querySelector("input").value = "";
-    // BottomCols[9].querySelector("input").value = "";
-
-    // const row = BottomRows.closest(".row");
-
-   // Remove the row element from the DOM
-   BottomRows[i].remove();
-
-  }
-  // document.querySelector(".bottomField").innerHTML = "";
 }
+
+//  bottom rows will be clear.......
+
+function buttomClear(){
+
+    const BottomRows = document.querySelectorAll(".bottomRow");
+
+    console.log("bottom rows length:  " , BottomRows.length);
+
+    for (let i = 0; i < BottomRows.length; i++) {
+    BottomRows[i].remove();
+    }
+
+}
+
 
 
 // end===============================
