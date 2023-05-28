@@ -478,8 +478,6 @@ function Saledropdown(
 //checking the field is null or not
 
 function addBottomFieldRow(GoodsString) {
-
-
   var GoodsData = JSON.parse(decodeURIComponent(GoodsString));
   console.log("Goodstring AddBottomFieldRow ", GoodsData);
   const salesOrderIdInput = document.querySelector(".SalesOrderId").value;
@@ -492,24 +490,21 @@ function addBottomFieldRow(GoodsString) {
   var SalesPerson = document.querySelector(".SalesOrderPerson").value;
   var SalesType = document.querySelector(".SalesOrderSalesType").value;
   var StoreName = document.querySelector(".SalesOrderStoreName").value;
-  
-
 
   // var detailsTableRow = document.querySelector(".detailstableRow");
   // console.log("details table length: ", detailsTableRow);
 
-  
-const detailstableRow = document.querySelectorAll(".detailstableRow");
-  console.log("lengthsdfjh",detailstableRow);
+  const detailstableRow = document.querySelectorAll(".detailstableRow");
+  console.log("lengthsdfjh", detailstableRow);
 
   AddBottomFieldRowdata(GoodsData);
 
-// validation for giving row creation 
+  // validation for giving row creation
   // if (
   //   detailstableRow.length > 0 && // Check if there is at least one row
-  //   (detailstableRow[detailstableRow.length - 1].querySelector(".goodsName").textContent === "Nut" 
+  //   (detailstableRow[detailstableRow.length - 1].querySelector(".goodsName").textContent === "Nut"
   //   ||
-  //   detailstableRow[detailstableRow.length - 1].querySelector(".UnitSetId input").value.trim() !== "" 
+  //   detailstableRow[detailstableRow.length - 1].querySelector(".UnitSetId input").value.trim() !== ""
   //   ||
   //   detailstableRow[detailstableRow.length - 1].querySelector(".UnitId input").value.trim() !== "" ||
   //   // detailstableRow[detailstableRow.length - 1].querySelector(".StockQuantity").textContent !== "" ||
@@ -523,7 +518,6 @@ const detailstableRow = document.querySelectorAll(".detailstableRow");
   // } else {
   //   AddBottomFieldRowdata(GoodsData);
   // }
-  
 
   // if (
   //   salesOrderIdInput != "" &&
@@ -548,7 +542,6 @@ function AddBottomFieldRowdata(GoodsData) {
   // Create a new row element
   var newRow = document.createElement("div");
   newRow.className = "row bottomRow detailstableRow";
-
 
   newRow.innerHTML = `
     <div class="col col-auto" onclick="ShowGoodsData('${encodeURIComponent(
@@ -600,12 +593,7 @@ function AddBottomFieldRowdata(GoodsData) {
       totalValueDiv.textContent = totalValue.toFixed(2);
     }
   }
-
 }
-
-
-
-
 
 function ShowGoodsData(GoodsString) {
   document.querySelector("#popupSale").classList.toggle("active");
@@ -636,9 +624,6 @@ function ShowGoodsData(GoodsString) {
   }
 }
 
-
-
-
 function tableValueForGoods(event, goodsId, goodsName, StockQuantity) {
   console.log("Clicked goodsId:", goodsId);
   console.log("Clicked goodsName:", goodsName);
@@ -653,7 +638,6 @@ function tableValueForGoods(event, goodsId, goodsName, StockQuantity) {
   GoodsNameColumn[GoodsNameColumn.length - 1].setAttribute("id", goodsId);
 }
 // deleting the row
-
 
 // =========================working heree ........... to delete row
 // function deleteBottomFielOneRow() {
@@ -673,11 +657,9 @@ function tableValueForGoods(event, goodsId, goodsName, StockQuantity) {
 //     row.remove();
 //   }
 
-
 //    console.log("fsdahsfdhdf");
 
 // }
-
 
 function deleteBottomFielOneRow() {
   // Assuming you have a button with a class "deleteButton" that triggers the row deletion
@@ -701,17 +683,6 @@ function deleteBottomFielOneRow() {
 
   console.log("fsdahsfdhdf");
 }
-
-
-
-
-
-
-
-
-
-
-
 
 // Sales offer
 
@@ -774,7 +745,6 @@ function CreateNewSalesOrder() {
   document.querySelector(".SalesOrderNo").placeholder = "****<< NEW >>****";
 
   Clear();
-
 }
 
 // saved marufa.........................
@@ -915,34 +885,22 @@ function Clear() {
   //SalesOfferDetailsId
   document.querySelector(".SalesOrderOffer").value = "";
 
-
-  buttomClear();
-
-
+  bottomClear();
 }
 
 //  bottom rows will be clear.......
 
-function buttomClear(){
+function bottomClear() {
+  const BottomRows = document.querySelectorAll(".bottomRow");
 
-    const BottomRows = document.querySelectorAll(".bottomRow");
+  console.log("bottom rows length:  ", BottomRows.length);
 
-    console.log("bottom rows length:  " , BottomRows.length);
-
-    for (let i = 0; i < BottomRows.length; i++) {
+  for (let i = 0; i < BottomRows.length; i++) {
     BottomRows[i].remove();
-    }
-
+  }
 }
 
-
-
 // end===============================
-
-
-
-
-
 
 function addDataToMasterTable() {}
 
