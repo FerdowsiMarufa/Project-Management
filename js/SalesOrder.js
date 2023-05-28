@@ -685,8 +685,12 @@ function GetingAllSalesOffer() {
 }
 
 function CreateNewSalesOrder() {
+  console.log("fhdsgfshdg");
   document.querySelector(".SalesOrderId").placeholder = "****<< NEW >>****";
   document.querySelector(".SalesOrderNo").placeholder = "****<< NEW >>****";
+
+  Clear();
+
 }
 
 // saved marufa.........................
@@ -795,8 +799,8 @@ function saveData() {
 function Clear() {
   // Sales Order Master
   // SalesOrderMasterId
-  document.querySelector(".SalesOrderId").placeholder = " ";
-  document.querySelector(".SalesOrderNo").placeholder = " ";
+  // document.querySelector(".SalesOrderId").placeholder = " ";
+  // document.querySelector(".SalesOrderNo").placeholder = " ";
   document.querySelector(".SalesOrderId").value = "";
   // DisplayNo
   document.querySelector(".SalesOrderNo").value = "";
@@ -827,25 +831,44 @@ function Clear() {
   //SalesOfferDetailsId
   document.querySelector(".SalesOrderOffer").value = "";
 
-  const BottomRows = document.querySelectorAll(".bottomRow");
-  const dat = [];
-  console.log(BottomRows);
-  for (let i = 0; i < BottomRows.length; i++) {
-    const BottomCols = BottomRows[i].querySelectorAll(".bottomCol");
 
-    // Clear the values of each column in the current row
-    BottomCols[0].innerText = "";
-    BottomCols[3].innerText = "";
-    BottomCols[8].innerText = "";
-    BottomCols[4].querySelector("input").value = "";
-    BottomCols[5].querySelector("input").value = "";
-    BottomCols[6].querySelector("input").value = "";
-    BottomCols[7].querySelector("input").value = "";
-    BottomCols[9].querySelector("input").value = "";
+
+
+  const BottomRows = document.querySelectorAll(".bottomRow");
+
+  // const dat = [];
+  console.log("bottom rows length:  " , BottomRows.length);
+  for (let i = 0; i < BottomRows.length; i++) {
+    // const BottomCols = BottomRows[i].querySelectorAll(".bottomCol");
+
+    //Clear the values of each column in the current row
+    // BottomCols[0].innerText = "";
+    // BottomCols[1].querySelector("input").value = "";
+    // BottomCols[2].querySelector("input").value = "";
+    // BottomCols[3].innerText = "";
+    // BottomCols[8].innerText = "";
+    // BottomCols[4].querySelector("input").value = "";
+    // BottomCols[5].querySelector("input").value = "";
+    // BottomCols[6].querySelector("input").value = "";
+    // BottomCols[7].querySelector("input").value = "";
+    // BottomCols[9].querySelector("input").value = "";
+
+    // const row = BottomRows.closest(".row");
+
+   // Remove the row element from the DOM
+   BottomRows[i].remove();
+
   }
   // document.querySelector(".bottomField").innerHTML = "";
 }
+
+
 // end===============================
+
+
+
+
+
 
 function addDataToMasterTable() {}
 
