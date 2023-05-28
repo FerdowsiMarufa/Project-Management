@@ -1,0 +1,374 @@
+:root {
+  --icon-color: #3986ac;
+  --inputBorder-color: rgb(175, 200, 221);
+  --IconBorder-color: #bbbbbb;
+  --bottominputBorder: #a3a3a3;
+  --bottom1stRow: #d4e2e9;
+  --borderColor: #a3a3a3;
+  --buttonColor: rgb(64, 161, 218);
+}
+
+#saleSection {
+  background-color: #fff;
+  border: 1px solid var(--inputBorder-color);
+  margin: 30px 30px;
+  margin-bottom: 100px;
+  /* display: none; */
+}
+#SaleSectionName {
+  background-color: #3986ac;
+  color: #fff;
+  padding: 2px;
+  padding-left: 6px;
+}
+.SalesInputContainer {
+  margin-top: 6px;
+}
+.saleSectionRow i {
+  border-radius: 4px;
+  border: 1px solid var(--IconBorder-color);
+  color: var(--icon-color);
+  font-size: 13px;
+}
+#SalesOrderIdLabel {
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.SalesOrderSearchIcon {
+  padding: 5px 4px 0px;
+}
+
+.SalesOrderFileIcon {
+  padding: 5px 5px;
+}
+
+.saleSectionRow input {
+  border-color: var(--inputBorder-color);
+}
+
+/* .SalesInputContainer ::placeholder ,.SalesInputContainer  option,.SalesInputContainer  input{ */
+.SalesInputContainer input,
+.SalesInputContainer textarea {
+  color: rgb(68, 68, 68);
+  font-size: 13px;
+  padding: 2px 4px !important;
+  /* padding: 16px 16px; */
+}
+
+.inputRow {
+  margin: 3px 0;
+}
+#SalesOrderSelectInput {
+  width: 100%;
+  border: 1px solid var(--inputBorder-color) !important;
+  /* color: rgb(68, 68, 68); */
+  font-size: 13px;
+  padding: 2px 4px !important;
+  border-radius: 4px;
+}
+
+/* .SalesInputContainer  option{
+  color: gray;
+  font-size: 13px;
+  padding: 0 6px;
+} */
+
+/********************* bottom part ********************/
+
+.bottomField {
+  margin-top: 50px;
+  border: 1px solid var(--inputBorder-color);
+  height: 200px;
+  /* height: 70%; */
+}
+
+.bottomField1stRow {
+  background-color: var(--bottom1stRow);
+  font-weight: 500;
+}
+.bottomField .row {
+  font-size: 14px;
+  font-weight: 500px;
+  text-align: center;
+  border-bottom: 1px solid var(--inputBorder-color);
+}
+
+.bottomField .col {
+  /* border: 1px solid var(--inputBorder-color); */
+  padding: 0 !important;
+  border-right: 1px solid var(--inputBorder-color);
+}
+.bottomField .col-auto {
+  padding: 0 6px;
+}
+
+.bottomField .row input {
+  padding: 0px;
+  margin: 2px;
+  border-radius: 4%;
+  width: 95%;
+  font-size: 13px;
+  text-align: center;
+  /* margin: 4px;
+
+  border: 0.5px solid var(--bottominputBorder); */
+}
+.bottomField .row input:focus {
+  margin: 2px;
+  padding: 0 !important;
+  border-radius: 4%;
+  border: 0.5px solid var(--inputBorder-color);
+}
+.bottom-1st-row-icon {
+  color: #d4e2e9;
+}
+.SalesBottomFieldSearchIcon {
+  padding: 5px !important;
+  margin: 0 !important;
+}
+.AddRowDiv {
+  background-color: var(--bottom1stRow);
+}
+.AddRowDiv i {
+  color: var(--icon-color) !important;
+  font-size: 14px;
+  margin-left: 10px;
+}
+
+/* .SalesButton{
+  color: var(--icon-color);
+} */
+
+.button-div {
+  margin: 10px 0;
+}
+.SalesButton {
+  background-color: #3986ac !important;
+  margin: 5px;
+  color: #fff !important;
+  padding: 3px 8px !important;
+}
+
+.SalesBottomFieldSearchIconColor {
+  color: var(--icon-color);
+  font-size: 14px;
+}
+
+/**************** select pop up div ****************/
+
+/*****client *****/
+.ClientOptionValue {
+  display: none;
+  position: absolute;
+  z-index: 3;
+  background-color: #fff;
+  border: 1px solid var(--inputBorder-color);
+  width: 20%;
+}
+.clientInputfield {
+  margin: 0 6px;
+}
+.ClientNameDiv,
+.SalesTypeSelectDiv,
+.SalesPersonValueDiv {
+  height: 300px !important;
+  overflow: scroll;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  padding-top: 0;
+}
+.ClientNameDiv p,
+.SalesPersonValueDiv p,
+.SalesTypeSelectDiv p {
+  padding: 2px !important;
+  margin: 0px !important;
+  cursor: pointer;
+  color: rgb(31, 30, 30);
+  font-size: 15px;
+}
+/* .clientButton, .SalesButton {
+  position: relative;
+  text-align: left;
+} */
+
+.ClientOptionValue.active {
+  display: block;
+}
+.clientinput,
+.SalePersonButton,
+.SalesTypeButton {
+  position: relative;
+  text-align: left;
+}
+
+.SalesPersonButtonValue {
+  display: none;
+  position: absolute;
+  z-index: 3;
+  background-color: #fff;
+  border: 1px solid var(--inputBorder-color);
+  width: 13.5%;
+}
+.SalesPersonButtonValue.active {
+  display: block;
+}
+
+.SalesTypeButtonValue {
+  display: none;
+  position: absolute;
+  z-index: 3;
+  background-color: #fff;
+  border: 1px solid var(--inputBorder-color);
+  width: 13.5%;
+}
+.SalesTypeButtonValue.active {
+  display: block;
+}
+
+/************************ pop up for button ******************/
+
+#popupSale {
+  position: fixed;
+  top: -110%;
+
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1004;
+  background: rgba(119, 119, 119, 0.397);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem;
+}
+
+#popupSale.active {
+  top: 0;
+}
+#SalePopUpContainerName {
+  background-color: #3986ac; ;
+  /* color: #fff; */
+  color:  #fff;
+
+  border-radius: 4px;
+}
+#SalePopUpContainerTable {
+  border: 1px solid #bdc3c7;
+  width: 98%;
+  height: 70%;
+  overflow: scroll;
+  background-color: #fff;
+}
+
+#SalePopUpContainerTable .row {
+  text-align: center;
+  padding: 4px;
+  border-bottom: 1px solid var(--bottom1stRow);
+}
+#SalePopUpContainerTable .Sale_1strow {
+  font-size: 13px;
+  font-weight: 500;
+  /* color:#fff; */
+  /* background-color:  #3986ac ; */
+  color: #000000;
+  position: sticky;
+  top: 0;
+}
+#SalePopUpContainer {
+  height: 55%;
+  width: 45%;
+  background-color: #ffffff;
+  border-radius: 5px;
+}
+#SalePopUpContainerName {
+  padding: 4px;
+  margin: 3px;
+  font-weight: 500;
+}
+#SalePopUpSearchDiv {
+  border: 1px solid #504949;
+  width: 100%;
+  border-radius: 4px;
+}
+#popupSale input,
+#popupSale select {
+  border: 1px solid #a3a3a3;
+  width: 100%;
+  border-radius: 5px;
+}
+#popupSale #SalePopUpSearchDiv button {
+  background-image: linear-gradient(
+    to bottom,
+    rgb(187, 218, 236),
+    rgb(255, 255, 255)
+  );
+}
+#SalePopUpContainerTable {
+}
+
+#SalePopUpSearchDiv .col {
+  padding: 0px !important;
+  margin: 0 !important;
+}
+
+#popup.active {
+  top: 0;
+}
+
+#popup #close {
+  position: absolute;
+  color: yellowgreen;
+  cursor: pointer;
+  top: 2rem;
+  right: 3rem;
+  font-size: 2rem;
+}
+
+#leavePopUpContainer {
+  height: 60%;
+  width: 45%;
+  background-color: #ffffff;
+  border-radius: 5px;
+}
+
+#LeavePopUpContainerName {
+  padding: 4px;
+  background-color: rgb(133, 184, 216);
+  margin: 3px;
+  border-radius: 5px;
+  color: #fff;
+  border: 1px solid rgb(64, 151, 206);
+}
+
+#leavePopUpContainerTable {
+  border: 1px solid #bdc3c7;
+  width: 98%;
+  height: 80%;
+  overflow: scroll;
+  background-color: #fff;
+}
+
+#leavePopUpContainerTable .row {
+  height: 14%;
+
+  text-align: center;
+  display: flex;
+  align-items: center;
+  /* padding: 0px !important;
+  margin: 0 !important; */
+  border-bottom: 1px solid #bdc3c7;
+}
+
+.leavePopUp-1st-row {
+  background-color: #bdc3c7;
+  position: sticky;
+  top: 0;
+}
+
+
+/* selected popup selection */
+.selected {
+  background-color:  #b3cfdd;
+}

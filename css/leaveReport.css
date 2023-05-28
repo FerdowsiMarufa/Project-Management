@@ -1,0 +1,37 @@
+ 
+img {
+  height: 80px;
+}
+#second-col-srow {
+  padding-top: 7px;
+  padding-bottom: 6px;
+}
+.third-col-par {
+  font-size: 12px;
+}
+#second-col-frow {
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+#third-col-frow {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+#third-col-srow {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+#third-col-trow {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+p {
+  margin: 0;
+}
+#department-recomendation {
+  padding-top: 13px;
+  padding-bottom: 13px;
+}
+#recName {
+  height: 25px;
+}

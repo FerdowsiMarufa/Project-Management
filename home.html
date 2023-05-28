@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/home.css" class="stylesheet" />
+    <link rel="stylesheet" href="/css/sales.css" class="stylesheet" />
+    <link rel="stylesheet" href="/css/leaveReport.css" class="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-7W8sIxZuR7JfVEvRUBoGJ0QjrXioSl0d3J+fwJz0tVMyzZPSbJ7V2KPFcJj7V8f" crossorigin="anonymous">
+    <!-- <link
+      rel="stylesheet"
+      href="/bootstrap/css/bootstrap.min.css"
+      class="stylesheet"
+    /> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+      integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&family=Roboto:wght@300;400;500;700;900&family=Urbanist:wght@100;700&display=swap" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"
+      integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e"
+      crossorigin="anonymous"
+    />
+   
+    <title>Dashboard</title>
+  </head>
+  <body>
+    <div class="d-flex">
+      <div class="dashboard-sidebar">
+        <span class="dashboard-name">NDE Dashboard</span>
+        <div id="side-parent" class="sidebar-content"></div>
+      </div>
+
+      <!-- sidebar end -->
+
+      <div class="dashboard-body">
+        <!-- home page -->
+        <div class="home-page">
+          <header class="d-flex justify-content-end home-header">
+            <div class="account home-account">
+              <i class="fa-solid fa-user user-icon"></i>
+              <!-- on hover account details -->
+              <div class="user-act">
+                <div>
+                  <div class="user-info">
+                    <span class="user-name">Ferdowsi Marufa</span>
+                    <span class="user-desig">Intern</span>
+                  </div>
+                  <div class="login-list">
+                    <p>My Profile</p>
+                    <p>Settings</p>
+                    <p>Log Out</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </header>
+
+          <hr />
+
+          <!-- body -->
+          <div class="body-content">
+            <div class="dictoctory-dashboard">Dictoctory Dashboard</div>
+            <div class="container">
+              <div class="row justify-content-between">
+                <div class="col-md-8 chart" style="width: 63%">
+                  <!-- bar chart -->
+                  <div
+                    id="chart"
+                    style="width: 100%; max-width: 600px; height: 400px"
+                  ></div>
+                </div>
+                <div class="col-md-4 task-value" style="width: 32%">
+                  <div class="approval">
+                    <h2 class="number-of-approval">2+</h2>
+                    <span class="approval-name"> leave approval</span>
+                  </div>
+                  <hr />
+                  <div class="approval">
+                    <h2 class="number-of-approval">2+</h2>
+                    <span class="approval-name"> leave approval</span>
+                  </div>
+                  <hr />
+                  <div class="approval">
+                    <h2 class="number-of-approval">2+</h2>
+                    <span class="approval-name"> leave approval</span>
+                  </div>
+                  <hr />
+                  <div class="approval">
+                    <h2 class="number-of-approval">2+</h2>
+                    <span class="approval-name"> leave approval</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+          <!-- header -->
+    
+          <div class="menu-page-header-design  justify-content-between ">
+            <!-- radio div-->
+            <div class="radio-div">
+            
+ 
+            </div>
+            <!-- radio div end -->
+
+            <!-- user account -->
+            <div class="account menu-user-icon">
+              <i class="fa-solid fa-user"></i>
+              <!-- on hover accout details -->
+              <div class="user-act">
+                <div>
+                  <div class="user-info">
+                    <span class="user-name">Ferdowsi Marufa</span>
+                    <span class="user-desig">Intern</span>
+                  </div>
+                  <div class="login-list">
+                    <p>My Profile</p>
+                    <p>Settings</p>
+                    <p>Log Out</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <!-- header end -->
+        <section id="ApplicationPage">
+
+          <div class="container-fluid p-0 m-0" id="ApplicationContainer">
+            <!-- js -->
+          </div>
+         <!-- button div -->
+         <div class="button-div">
+          
+         </div>
+        </section>
+
+        <!-- Modal approve -->
+        <div
+          class="modal fade"
+          id="exampleModalApprove"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog border-none">
+            <div class="modal-content">
+              <div class="modal-header border-0">
+                <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">Are you sure to approve?</div>
+              <div class="modal-footer border-0"> 
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  data-bs-dismiss="modal"
+                  id ="modalYes"
+                  onclick="ApproveAll()"
+                >
+                  Yes
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                  onclick="Function_NO()"
+                  aria-label="Close"
+                >
+                  No
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Modal reject -->
+        <div
+          class="modal fade"
+          id="exampleModalReject"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog border-none">
+            <div class="modal-content">
+              <div class="modal-header border-0">
+                <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">Are you sure to reject?</div>
+              <div class="modal-footer border-0">
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  data-bs-dismiss="modal"
+                  onclick="RejectAll()"
+                >
+                  Yes
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                  onclick="Function_NO()"
+                  aria-label="Close"
+                >
+                  No
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- approved page -->
+
+            <!-- Purchase order Report  -->
+            <Section id="PO-Report" class=" page-size po_report">
+              <div id="head">
+              </div>
+             <div class="mt-3">
+                <table id="tbl" class="table table-bordered border-dark">
+                 <tbody id="tbody">
+                      <tr>
+                           <th>Req. No.</th>
+                           <th >Description</td>
+                           <th>Brand</th>
+                           <th>Unit</th>
+                           <th>Qty</th>
+                           <th>Unit Rate</th>
+                           <th>Original Amount</th>
+                           <th>Discount(BDT)</th>
+                           <th>Amount(BDT)</th>
+                      </tr>
+                     </tbody>
+                </table>
+              </div>
+              <div id="pdiv">
+              </div>       
+        </Section>
+
+      <!-- leave report -->
+       <section id="LeaveReportSection">
+        <div id="LeaveReportContainer" class="container bg-white ">
+
+        </div>
+       </section>    
+       <!-- //modal -->
+       <section>
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              </div>
+              <div class="modal-body">
+                Modal body goes here.
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>        
+       </section>
+ 
+<!-- LEAVE APPLICATION -->
+  <section id="newLeaveApplication">
+
+  </section>
+
+  <!-- Popup for leave application -->
+  <div action="" id="popup"> 
+ 
+    <!-- creating a container -->
+    <div id="leavePopUpContainer" class="container  bg-denger p-0 m-0">
+      <div id="LeavePopUpContainerName" class="d-flex justify-content-between ">
+        <span> Container Name</span>
+        <i class="fa-solid fa-xmark p-1" id="LeavePopUpclose"></i>
+      </div>
+         <div  id ="leavePopUpContainerTable"class="container">
+        <!-- js -->
+         </div >
+         
+    <!-- button div -->
+    <div id="leavePopUpButtonDiv" class="button-div m-2">
+      <button type="button" id="LeavePopUpclose" class="approve-button"  >Ok</button>
+      <button type="button" id="LeavePopUpclose" class="reject-button"    >Close</button>
+    </div>
+    <!-- button div end-->
+
+    </div>
+    </div>
+      <!-- creating a container end -->
+    <div>    
+       <!-- Popup for  end -->
+       
+       
+
+
+
+       <!-- Popup for  sale -->
+  <div action="" id="popupSale"> 
+ 
+    <!-- creating a container -->
+    <div id="SalePopUpContainer" class="container  bg-denger p-0 m-0">
+      <div id="SalePopUpContainerName" class="d-flex justify-content-between m-0 mb-2 p-2">
+        <span> Select Store Name</span>
+        <i class="fa-solid fa-xmark p-1" id="SalePopUpclose"></i>
+      </div>
+      <div id="SalePopUpSearchDiv " class=" mx-2 d-flex justify-content-between ">
+        <div class="container ">
+          <div class="row">
+            <div class=" col col-2 p-0">
+              <input type="button" class="form-control p-1" id="SalesOrderId " value="Store Name"  > 
+            </div>
+            <div class=" col col-8 p-0">
+              <input type="text" class="form-control p-1" id="SalesOrderId " placeholder="">             
+            </div>
+            <div class="col col-2 p-0">
+              <input type="button" class="form-control p-1" id="SalesOrderId "  value="Export"> 
+            </div>
+           </div>
+        </div>
+    
+       
+      </div>
+         <div  id ="SalePopUpContainerTable"class="container">
+        <!-- js -->
+
+        <div class="row Sale_1strow ">
+          <div class="col"> Store location</div>
+          <div class="col">Store name</div>
+        </div>
+        <div class="row">
+          <div class="col">Dhaka </div>
+          <div class="col">Banani</div>
+        </div>
+         </div >
+         
+    <!-- button div -->
+    <div id="leavePopUpButtonDiv" class="button-div m-1">
+      <button type="button" id="LeavePopUpclose" class="approve-button" onclick="SalePopupGetingValue(event) " >Ok</button>
+      <button type="button" id="SalePopUpclose" class="reject-button"    >Close</button>
+    </div>
+    <!-- button div end-->
+
+    </div>
+    </div>
+      <!-- creating a container end -->
+    <div>    
+       <!-- Popup for  end -->
+       
+       
+
+     
+
+
+
+
+
+
+      <!-- sales section start-->
+      <section id="saleSection">
+         <!-- js -->
+ 
+
+ 
+
+      </section>
+ <!-- sales section end-->
+      </div>
+    </div>
+  </body>
+
+  <script src="/js/POReport.js"></script>
+  <script src="/js/home.js"></script>
+  <script src="/js/LeaveGetReport.js"></script>
+  <script src="/js/rateCollection.js"></script>
+  <script src="/js/RequisitionFinal.js"></script>
+  <script src="/js/Common.js"></script>
+  <script src="/js/SalesOrder.js"></script>
+  <script src="/js/LeaveApproval.js"></script>
+  <script src="/js/SideMenu.js"></script>
+  <script src="/js/LeaveApplication.js"></script>
+  <script src="/bootstrap/js/bootstrap.min.js"></script>
+  <script src="/js/MaterialStock.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ZUe/6nqQ6U/Ja6q3w4KjGgJWpvbN9PcbfzSzz7W65xdv1zFsdMpKs10IBcGU7+8o" crossorigin="anonymous"></script>
+ 
+ 
+  <script src="/js/PurchaseFinal.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script> -->
+</html>

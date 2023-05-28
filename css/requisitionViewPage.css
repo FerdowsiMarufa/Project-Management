@@ -1,0 +1,10 @@
+.ViewPage_header {
+  display: flex;
+  justify-content: center;
+}
+
+/*  table container */
+.container .row {
+  height: 60px !important;
+  border: 1px solid #e7e6e6;
+}

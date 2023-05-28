@@ -1,0 +1,215 @@
+* {
+  /* border: none !important; */
+}
+
+:root {
+  --main-color: #754d86;
+  --second-color: #0a8bba;
+  --x: #f4fcff;
+}
+
+body {
+  background-color: rgb(247, 241, 247) !important;
+}
+
+.dashboard {
+}
+
+/* css part of sidebar  start*/
+
+.dashboard-sidebar {
+  background-color: #fff;
+  width: 21%;
+  height: 780px;
+  padding: 35px 20px;
+}
+.dashboard-name {
+  font-size: 31px;
+  font-weight: 500;
+}
+
+/* Style the buttons that are used to open and close the accordion panel */
+.accordion {
+  background-color: #fff;
+  color: #444;
+  cursor: pointer;
+  padding: 15px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active {
+  background-color: #c9bbcf;
+  border-radius: 10px;
+}
+.active i {
+  transform: rotate(-180deg);
+}
+
+.accordion {
+  display: flex;
+  justify-content: space-between;
+  color: var(--main-color);
+}
+.accordion:hover {
+  background-color: #e0d9e2;
+  border-radius: 10px;
+}
+/* .accordion:hover .panel {
+  display: block;
+} */
+.icon-accordion {
+  color: #9b7baa;
+  margin-right: 5px;
+}
+
+.icon-down {
+  margin-top: 7px;
+  font-size: 12px;
+  color: var(--main-color);
+}
+
+/* Style the accordion panel. Note: hidden by default */
+.panel {
+  padding: 0 18px;
+  background-color: white;
+  display: none;
+  overflow: hidden;
+  margin-left: 20px;
+}
+.panel a {
+  text-decoration: none;
+  cursor: pointer;
+  color: #5f2f74;
+}
+.panel a:hover {
+  color: #5f2f74;
+}
+
+/* css part of sidebar end */
+
+/* css part of dashboard body start*/
+
+.dashboard-body {
+  width: 100%;
+  margin: 25px;
+}
+.account {
+  text-align: end;
+  width: 100%;
+  padding: 4px 6px;
+}
+.account:hover .user-act {
+  display: block;
+}
+
+.account i {
+  color: #9b7baa;
+  padding: 5px 7px;
+  font-size: 23px;
+  border: 1px solid #9b7baa;
+  border-radius: 50%;
+  margin-right: 30px;
+}
+
+/* user Act design start */
+
+.user-act {
+  z-index: 2;
+  display: none;
+  position: absolute;
+  top: 75px;
+  background-color: #ffffff;
+  right: 20px;
+  height: 255px;
+  width: 200px;
+  border: 1px solid #dfdfdf;
+}
+
+.user-act::before {
+  position: absolute;
+
+  content: "";
+  right: 50px;
+  top: -10px;
+  border-top: 0px solid transparent;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 10px solid #dec5df;
+}
+
+.user-info {
+  background-color: #dec5df;
+  padding: 28px;
+  text-align: left;
+}
+.user-name {
+  font-size: 19px;
+}
+.user-desig {
+}
+
+.login-list {
+  margin: 30px;
+  text-align: left;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* user Act design end */
+
+.body-content {
+  margin-left: 10px;
+}
+
+.dictoctory-dashboard {
+  font-size: 28px;
+  color: var(--main-color);
+}
+.row {
+  width: 100%;
+  padding-top: 30px;
+  /* background-color: rgb(127, 107, 146); */
+  /* padding-left: 20px; */
+  height: 500px;
+  display: grid;
+}
+.chart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(255, 255, 255);
+  /* margin: 20px;
+    border-radius: 10px; 
+    /* width: 50% !important; */
+  border-radius: 10px;
+}
+.chart2 {
+  background-color: aqua;
+  /* width: 2% !important; */
+}
+
+/* task part */
+.task-value {
+  padding-top: 15px;
+  background-color: rgb(255, 255, 255);
+
+  border-radius: 10px;
+}
+
+.approval {
+  padding: 10px 0;
+  text-align: center;
+}
+
+.number-of-approval {
+  color: #754d86;
+}
+
+.approval-name {
+  color: #754d86;
+}
