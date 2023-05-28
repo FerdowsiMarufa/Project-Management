@@ -324,7 +324,7 @@ function displayTopSalesField(
      <i class="fa-solid fa-plus" onclick="addBottomFieldRow('${encodeURIComponent(
        JSON.stringify(materialData)
      )}')"></i>
-     <i class="fa-solid fa-trash deleteButtonBottomField" onclick="deleteBottomFielOneRow()"></i>
+     <i class="fa-solid fa-trash deleteBtn" onclick="deleteBottomFielOneRow()"></i>
    </div>
 
 
@@ -558,7 +558,7 @@ function AddBottomFieldRowdata(GoodsData) {
     </div>
     <div class="col bottomCol col-2 goodsName" id="GoodsInput">Nut</div>
     <div class="col bottomCol UnitSetId"><input type="text" /></div>
-    <div class="col bottomCol UnitId"><input type="text" /></div>
+    <div class="col bottomCol UnitId"><input type="text"  value="Pcs" /></div>
     <div class="col bottomCol StockQuantity"></div>
     <div class="col bottomCol Quantity"><input type="text" /></div>
     <div class="col bottomCol Rate"><input type="text" /></div>
@@ -640,6 +640,8 @@ function ShowGoodsData(GoodsString) {
 
 
 function tableValueForGoods(event, goodsId, goodsName, StockQuantity) {
+
+  selectedRow(event);
   console.log("Clicked goodsId:", goodsId);
   console.log("Clicked goodsName:", goodsName);
   console.log("Clicked StockQuantity:", StockQuantity);
@@ -680,8 +682,8 @@ function tableValueForGoods(event, goodsId, goodsName, StockQuantity) {
 
 
 function deleteBottomFielOneRow() {
-  // Assuming you have a button with a class "deleteButton" that triggers the row deletion
-  const deleteButton = document.querySelector(".deleteButtonBottomField");
+ // Assuming you have a button with a class "deleteButton" that triggers the row deletion
+  const deleteButton = document.querySelector(".deleteBtn");
 
   // Add event listeners to the delete buttons
   deleteButton.addEventListener("click", deleteRow);
@@ -692,8 +694,8 @@ function deleteBottomFielOneRow() {
     const row = button.closest(".row");
 
     // Create a <delete> element
-    const deleteElement = document.createElement("delete");
-    deleteElement.textContent = "Delete";
+    const deleteElement = document.createElement("del");
+    deleteElement.textContent = "Del";
 
     // Replace the row element with the <delete> element
     row.parentNode.replaceChild(deleteElement, row);
@@ -916,14 +918,14 @@ function Clear() {
   document.querySelector(".SalesOrderOffer").value = "";
 
 
-  buttomClear();
+  bottomClear();
 
 
 }
 
 //  bottom rows will be clear.......
 
-function buttomClear(){
+function bottomClear(){
 
     const BottomRows = document.querySelectorAll(".bottomRow");
 
@@ -1041,31 +1043,10 @@ function SalePopupGetingValue(event) {
 
 // Store Name popup selected value.
 function tableValueForStores(event) {
-  let clickedRow = event.target.closest(".row");
-  if (clickedRow) {
-    let rowNumber = Array.from(clickedRow.parentNode.children).indexOf(
-      clickedRow
-    );
-    let rowValues = Array.from(clickedRow.children).map(
-      (column) => column.innerHTML
-    );
-    console.log("Row Values:", rowValues);
-    console.log("Row Number:", rowNumber);
-
-    // Remove the 'selected' class from any previously selected rows
-    let selectedRows = document.querySelectorAll(".row.selected");
-    selectedRows.forEach((row) => row.classList.remove("selected"));
-
-    // Add the 'selected' class to the clicked row
-    clickedRow.classList.add("selected");
-
-    var storeNameInput = document.querySelector(".storeNameInput");
-    console.log("store: ", storeNameInput);
-
+ 
+    selectedRow(event);
     storeNameInput.value = rowValues[0];
-  } else {
-    console.log("No matching row found");
-  }
+ 
 }
 
 // SalesOrderId
@@ -1299,6 +1280,13 @@ function DisplaySaleMasterData(MasterData) {
 // SalesOffre
 
 function tableValueForSalesOffer(event) {
+
+  selectedRow(event);
+    SalesOfferInput.value = rowValues[0];
+}
+
+
+function selectedRow(event){
   let clickedRow = event.target.closest(".row");
   if (clickedRow) {
     let rowNumber = Array.from(clickedRow.parentNode.children).indexOf(
@@ -1319,12 +1307,11 @@ function tableValueForSalesOffer(event) {
 
     var SalesOfferInput = document.querySelector(".SalesOfferInput");
     console.log("store: ", SalesOfferInput);
-
-    SalesOfferInput.value = rowValues[0];
-  } else {
-    console.log("No matching row found");
   }
+
 }
+
+
 
 // Sales Order
 
