@@ -82,7 +82,7 @@ function displayTopSalesField(
        
        <div class=" col-7    ">
          <div class="d-flex">
-           <input type="text" class="form-control p-0 SalesOrderId    SalesOrderId"   placeholder=" ">             
+           <input type="text" class="form-control p-0 SalesOrderId     "   placeholder=" ">             
            <i class="fa-solid fa-file SalesOrderFileIcon" onclick="CreateNewSalesOrder()" ></i>
            <i class="fa-solid fa-magnifying-glass SalesOrderSearchIcon" onclick ="DisplaySaleMasterData('${encodeURIComponent(
              JSON.stringify(SalesOrderMasters)
@@ -90,7 +90,7 @@ function displayTopSalesField(
          </div>
        </div> 
 
-     </div>
+     </div> 
      <!-- row end of 1st col -->
 
      <!-- 2nd row -->
@@ -356,6 +356,302 @@ function check_save_Type() {
     saveData();
   } else {
     alert("This is not a new entry");
+  }
+}
+
+// saved marufa.........................
+
+function saveData() {
+  const obj = [];
+  const objDetails = [];
+  // Sales Order Master
+  var SalesOrderMasterId = document.querySelector(".SalesOrderId").value;
+  var DisplayNo = document.querySelector(".SalesOrderNo").value;
+  var SalesOrderDate = document.querySelector(".SalesOrderDate").value;
+  var ClientId = document.querySelector(".clientinput").getAttribute("id");
+  var SalesOfferMasterId = document.querySelector(".SalesOrderOffer").value;
+  var EmployeeId = document
+    .querySelector(".SalePersonButton")
+    .getAttribute("id");
+  var SalesType = document.querySelector(".SalesTypeButton").value;
+  var DiscountAmount = document.querySelector(".discountInput").value;
+  var DiscountPercent = document.querySelector(
+    ".discountPercentageInput"
+  ).value;
+  var Remarks = document.querySelector("#myTextArea").value;
+  var StoreId = document.querySelector(".storeNameInput").value;
+  const SalesOfferDetailsId = document.querySelector(".SalesOrderOffer").value;
+  const UnitSetId = 1;
+  const UnitId = 1;
+  const DiscountPercentDetails = 6;
+  const DiscountAmountDetails = document.querySelector(
+    ".discountAmount input"
+  ).value;
+  DiscountAmount = 0;
+  console.log("remarks", Remarks);
+  obj.push({
+    SalesOrderMasterId,
+    DisplayNo,
+    SalesOrderDate,
+    ClientId,
+    SalesOfferMasterId,
+    EmployeeId,
+    SalesType,
+    DiscountAmount,
+    DiscountPercent,
+    Remarks,
+    StoreId,
+  });
+  //  salesOrder Details
+  const GoodsDefinitionId = document
+    .querySelector(".goodsName")
+    .getAttribute("id");
+  const BottomRows = document.querySelectorAll(".bottomRow");
+  const dat = [];
+  console.log(BottomRows);
+  for (let i = 0; i < BottomRows.length; i++) {
+    const BottomCols = BottomRows[i].querySelectorAll(".bottomCol");
+    const GoodsName = BottomCols[0].innerText;
+    const SalesOrderQtyInput = BottomCols[4].querySelector("input");
+    const SalesOrderQty = SalesOrderQtyInput ? SalesOrderQtyInput.value : "";
+    const SalesOrderRateInput = BottomCols[5].querySelector("input");
+    const SalesOrderRate = SalesOrderRateInput ? SalesOrderRateInput.value : "";
+    const DiscountPercentDetailsInput = BottomCols[6].querySelector("input");
+    const DiscountPercentDetails = DiscountPercentDetailsInput
+      ? DiscountPercentDetailsInput.value
+      : "";
+    const DiscountAmountDetailsInput = BottomCols[7].querySelector("input");
+    const DiscountAmountDetails = DiscountAmountDetailsInput
+      ? DiscountAmountDetailsInput.value
+      : "";
+    const RemarksInput = BottomCols[9].querySelector("input");
+    const RemarksDetails = RemarksInput ? RemarksInput.value : "";
+    objDetails.push({
+      SalesOrderMasterId,
+      SalesOfferDetailsId,
+      GoodsDefinitionId,
+      RemarksDetails,
+      DiscountAmountDetails,
+      DiscountPercentDetails,
+      SalesOrderQty,
+      SalesOrderRate,
+      UnitSetId,
+      UnitId,
+      StoreId,
+      GoodsName,
+    });
+  }
+  const formData = new FormData();
+  formData.append("NewOrderMasterData", JSON.stringify(obj));
+  formData.append("DetailsData", JSON.stringify(objDetails));
+  formData.append("SalesDetailsData", JSON.stringify(objDetails)); // Append the SalesDetailsData to the FormData
+  console.log("master:", obj);
+  console.log("details", objDetails);
+  // ...
+  fetch("https://localhost:7160/api/SalesOrder/NewOrderMaster", {
+    method: "POST",
+    body: formData,
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      // Process the retrieved data
+      console.log("retrive data ", data); // Display the data in the console
+      bottomClear();
+      displayingFetchData(data);
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+}
+function CreateNewSalesOrder() {
+  console.log("fhdsgfshdg");
+  document.querySelector(".SalesOrderId").placeholder = "****<< NEW >>****";
+  document.querySelector(".SalesOrderNo").placeholder = "****<< NEW >>****";
+
+  Clear();
+}
+
+// SalesOrderId
+
+function tableValueForSalesOrder(event, masterId) {
+  let clickedRow = event.target.closest(".row");
+  if (clickedRow) {
+    // console.log("masterId",masterId);
+    let rowNumber = Array.from(clickedRow.parentNode.children).indexOf(
+      clickedRow
+    );
+    let rowValues = Array.from(clickedRow.children).map(
+      (column) => column.innerHTML
+    );
+    console.log("Row Values:", rowValues);
+    console.log("Row Number:", rowNumber);
+
+    // Remove the 'selected' class from any previously selected rows
+    let selectedRows = document.querySelectorAll(".row.selected");
+    selectedRows.forEach((row) => row.classList.remove("selected"));
+
+    // Add the 'selected' class to the clicked row
+    clickedRow.classList.add("selected");
+
+    var SalesOrder = document.querySelector(".SalesOrderId");
+    console.log("store: ", SalesOrder);
+
+    SalesOrder.value = rowValues[1];
+
+    // const salesOrderId = 'SOM-0053'; // id marufa theke
+    const salesOrderId = SalesOrder.value;
+    console.log("salesOrderId hfdshj", salesOrderId);
+    // Replace with the sales order ID
+    fetchData(salesOrderId);
+  } else {
+    console.log("No matching row found");
+  }
+}
+
+function fetchData(salesOrderId) {
+  console.log("fetchData , salesOrderId ", salesOrderId);
+  fetch(
+    `https://localhost:7160/api/SalesOrder/GetOldSalesOrder/${salesOrderId}`
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(" master data:", data);
+
+      // Calling  the function for displaying data
+      displayingFetchData(data);
+    })
+    .catch((error) => {
+      // Handle any errors that occurred during the request
+      console.error(error);
+    });
+}
+
+function displayingFetchData(data) {
+  // for geting sales Master data
+  var SalesOrderId = document.querySelector(".SalesOrderId");
+  SalesOrderId.placeholder = data[0].masterId;
+  var DisPlayno = document.querySelector(".SalesOrderNo");
+  DisPlayno.placeholder = data[0].displayNo;
+
+  var value = data[0].salesOrderDate;
+  console.log("dsahgshdag date", value);
+  var date = new Date(value);
+  var formattedDate = date.toISOString().split("T")[0];
+  console.log("fgjfhdgj newDate: ", formattedDate);
+
+  var SalesOrderDate = document.querySelector(".SalesOrderDate");
+  SalesOrderDate.value = formattedDate;
+
+  var ClientId = document.querySelector(".clientinput");
+  ClientId.value = data[0].clientName;
+
+  var SalesOfferMasterId = document.querySelector(".SalesOrderOffer");
+  SalesOfferMasterId.value = data[0].salesOfferMasterId;
+  var SalesOrderPerson = document.querySelector(".SalesOrderPerson");
+
+  SalesOrderPerson.value = data[0].employeeName;
+  // var EmployeeId = document
+  // .querySelector(".SalePersonButton")
+  // .getAttribute("p");
+
+  var SalesType = document.querySelector(".SalesTypeButton");
+  SalesType.value = data[0].salesType;
+
+  var StoreId = document.querySelector(".storeNameInput");
+  StoreId.value = data[0].storeId;
+
+  // const UnitSetId = data[0].salesOrderDetails[0].UnitSetId;
+  // console.log("unite set id : ",UnitSetId);
+
+  // data[i].salesOrderDetails[i].UnitSetId;
+
+  var details = data[i].salesOrderDetails;
+
+  console.log("details sale", details);
+  console.log("data", data.length);
+
+  var bottomField = document.querySelector(".bottomField");
+  for (let i = 0; i < data.length; i++) {
+    var details = data[i].salesOrderDetails;
+    for (var j = 0; j < details.length; j++) {
+      var detail = details[j];
+      // AddBottomFieldRowdata(GoodsData);
+      console.log("bottom row coming.......");
+
+      // Create a new row element
+      var newRow = document.createElement("div");
+      newRow.className = "row bottomRow";
+
+      newRow.innerHTML = `
+          <div class="col col-auto" onclick="ShowGoodsData('${encodeURIComponent(
+            JSON.stringify()
+          )}')">
+            <i class="fa-solid fa-magnifying-glass SalesBottomFieldSearchIcon  SalesBottomFieldSearchIconColor"></i>
+          </div>
+          <div class=" col col-2 detailCol">${detail.goodsName}</div>
+          <div class="col detailCol">${detail.unitSetId}</div>
+          <div class="col detailCol">${detail.unitId}</div>
+          <div class="col detailCol"></div>
+          <div class="col detailCol">${detail.salesOrderQty}</div>
+          <div class="col detailCol">${detail.salesOrderRate}</div>
+          <div class="col detailCol">${detail.discountPercentDetails}</div>
+          <div class="col detailCol">${detail.discountAmountDetails}</div>
+          <div class="col detailCol"></div>
+          <div class="col detailCol">${detail.remarksDetails}</div>
+        `;
+
+      bottomField.appendChild(newRow);
+    }
+  }
+}
+
+function Clear() {
+  // Sales Order Master
+  // SalesOrderMasterId
+  // document.querySelector(".SalesOrderId").placeholder = " ";
+  // document.querySelector(".SalesOrderNo").placeholder = " ";
+  document.querySelector(".SalesOrderId").value = "";
+  // DisplayNo
+  document.querySelector(".SalesOrderNo").value = "";
+  // SalesOrderDate
+  document.querySelector(".SalesOrderDate").value = "";
+  //ClientId
+  document.querySelector(".clientinput").value = "";
+
+  // SalesOfferMasterId
+  document.querySelector(".SalesOrderOffer").value = "";
+  // EmployeeId
+  document.querySelector(".SalePersonButton").value = "";
+
+  // SalesType
+  document.querySelector(".SalesTypeButton").value = "";
+
+  // DiscountAmount
+  document.querySelector(".discountInput").value = "";
+
+  // DiscountPercent
+  document.querySelector(".discountPercentageInput").value = "";
+
+  // Remarks
+  document.querySelector("#myTextArea").value = "";
+  // StoreId
+  document.querySelector(".storeNameInput").value = "";
+
+  //SalesOfferDetailsId
+  document.querySelector(".SalesOrderOffer").value = "";
+
+  bottomClear();
+}
+
+//  bottom rows will be clear.......
+
+function bottomClear() {
+  const BottomRows = document.querySelectorAll(".bottomRow");
+
+  console.log("bottom rows length:  ", BottomRows.length);
+
+  for (let i = 0; i < BottomRows.length; i++) {
+    BottomRows[i].remove();
   }
 }
 
@@ -722,298 +1018,6 @@ function GetingAllSalesOffer() {
                    </div>
                     `;
     }
-  }
-}
-
-function CreateNewSalesOrder() {
-  console.log("fhdsgfshdg");
-  document.querySelector(".SalesOrderId").placeholder = "****<< NEW >>****";
-  document.querySelector(".SalesOrderNo").placeholder = "****<< NEW >>****";
-
-  Clear();
-}
-
-// saved marufa.........................
-
-function saveData() {
-  const obj = [];
-  const objDetails = [];
-  // Sales Order Master
-  var SalesOrderMasterId = document.querySelector(".SalesOrderId").value;
-  var DisplayNo = document.querySelector(".SalesOrderNo").value;
-  var SalesOrderDate = document.querySelector(".SalesOrderDate").value;
-  var ClientId = document.querySelector(".clientinput").getAttribute("id");
-  var SalesOfferMasterId = document.querySelector(".SalesOrderOffer").value;
-  var EmployeeId = document
-    .querySelector(".SalePersonButton")
-    .getAttribute("id");
-  var SalesType = document.querySelector(".SalesTypeButton").value;
-  var DiscountAmount = document.querySelector(".discountInput").value;
-  var DiscountPercent = document.querySelector(
-    ".discountPercentageInput"
-  ).value;
-  var Remarks = document.querySelector("#myTextArea").value;
-  var StoreId = document.querySelector(".storeNameInput").value;
-  const SalesOfferDetailsId = document.querySelector(".SalesOrderOffer").value;
-  const UnitSetId = 1;
-  const UnitId = 1;
-  const DiscountPercentDetails = 6;
-  const DiscountAmountDetails = document.querySelector(
-    ".discountAmount input"
-  ).value;
-  DiscountAmount = 0;
-  console.log("remarks", Remarks);
-  obj.push({
-    SalesOrderMasterId,
-    DisplayNo,
-    SalesOrderDate,
-    ClientId,
-    SalesOfferMasterId,
-    EmployeeId,
-    SalesType,
-    DiscountAmount,
-    DiscountPercent,
-    Remarks,
-    StoreId,
-  });
-  //  salesOrder Details
-  const GoodsDefinitionId = document
-    .querySelector(".goodsName")
-    .getAttribute("id");
-  const BottomRows = document.querySelectorAll(".bottomRow");
-  const dat = [];
-  console.log(BottomRows);
-  for (let i = 0; i < BottomRows.length; i++) {
-    const BottomCols = BottomRows[i].querySelectorAll(".bottomCol");
-    const GoodsName = BottomCols[0].innerText;
-    const SalesOrderQtyInput = BottomCols[4].querySelector("input");
-    const SalesOrderQty = SalesOrderQtyInput ? SalesOrderQtyInput.value : "";
-    const SalesOrderRateInput = BottomCols[5].querySelector("input");
-    const SalesOrderRate = SalesOrderRateInput ? SalesOrderRateInput.value : "";
-    const DiscountPercentDetailsInput = BottomCols[6].querySelector("input");
-    const DiscountPercentDetails = DiscountPercentDetailsInput
-      ? DiscountPercentDetailsInput.value
-      : "";
-    const DiscountAmountDetailsInput = BottomCols[7].querySelector("input");
-    const DiscountAmountDetails = DiscountAmountDetailsInput
-      ? DiscountAmountDetailsInput.value
-      : "";
-    const RemarksInput = BottomCols[9].querySelector("input");
-    const RemarksDetails = RemarksInput ? RemarksInput.value : "";
-    objDetails.push({
-      SalesOrderMasterId,
-      SalesOfferDetailsId,
-      GoodsDefinitionId,
-      RemarksDetails,
-      DiscountAmountDetails,
-      DiscountPercentDetails,
-      SalesOrderQty,
-      SalesOrderRate,
-      UnitSetId,
-      UnitId,
-      StoreId,
-      GoodsName,
-    });
-  }
-  const formData = new FormData();
-  formData.append("NewOrderMasterData", JSON.stringify(obj));
-  formData.append("DetailsData", JSON.stringify(objDetails));
-  formData.append("SalesDetailsData", JSON.stringify(objDetails)); // Append the SalesDetailsData to the FormData
-  console.log("master:", obj);
-  console.log("details", objDetails);
-  // ...
-  fetch("https://localhost:7160/api/SalesOrder/NewOrderMaster", {
-    method: "POST",
-    body: formData,
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      // Process the retrieved data
-      console.log("retrive data ", data); // Display the data in the console
-
-      // Perform any further operations with the data as needed
-      // For example, you can update the UI with the retrieved data
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
-}
-
-// SalesOrderId
-
-function tableValueForSalesOrder(event, masterId) {
-  let clickedRow = event.target.closest(".row");
-  if (clickedRow) {
-    // console.log("masterId",masterId);
-    let rowNumber = Array.from(clickedRow.parentNode.children).indexOf(
-      clickedRow
-    );
-    let rowValues = Array.from(clickedRow.children).map(
-      (column) => column.innerHTML
-    );
-    console.log("Row Values:", rowValues);
-    console.log("Row Number:", rowNumber);
-
-    // Remove the 'selected' class from any previously selected rows
-    let selectedRows = document.querySelectorAll(".row.selected");
-    selectedRows.forEach((row) => row.classList.remove("selected"));
-
-    // Add the 'selected' class to the clicked row
-    clickedRow.classList.add("selected");
-
-    var SalesOrder = document.querySelector(".SalesOrderId");
-    console.log("store: ", SalesOrder);
-
-    SalesOrder.value = rowValues[1];
-
-    // const salesOrderId = 'SOM-0053'; // id marufa theke
-    const salesOrderId = SalesOrder.value;
-    console.log("salesOrderId hfdshj", salesOrderId);
-    // Replace with the sales order ID
-    fetchData(salesOrderId);
-  } else {
-    console.log("No matching row found");
-  }
-}
-
-function fetchData(salesOrderId) {
-  console.log("fetchData , salesOrderId ", salesOrderId);
-  fetch(
-    `https://localhost:7160/api/SalesOrder/GetOldSalesOrder/${salesOrderId}`
-  )
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(" master data:", data);
-
-      // for geting sales Master data
-
-      // var DisPlayno = document.querySelector(".SalesOrderNo");
-      // DisPlayno.value = data[0].displayNo;
-
-      var value = data[0].salesOrderDate;
-      console.log("dsahgshdag date", value);
-      var date = new Date(value);
-      var formattedDate = date.toISOString().split("T")[0];
-      console.log("fgjfhdgj newDate: ", formattedDate);
-
-      var SalesOrderDate = document.querySelector(".SalesOrderDate");
-      SalesOrderDate.value = formattedDate;
-
-      var ClientId = document.querySelector(".clientinput");
-      ClientId.value = data[0].clientName;
-
-      var SalesOfferMasterId = document.querySelector(".SalesOrderOffer");
-      SalesOfferMasterId.value = data[0].salesOfferMasterId;
-      var SalesOrderPerson = document.querySelector(".SalesOrderPerson");
-
-      SalesOrderPerson.value = data[0].employeeName;
-      // var EmployeeId = document
-      // .querySelector(".SalePersonButton")
-      // .getAttribute("p");
-
-      var SalesType = document.querySelector(".SalesTypeButton");
-      SalesType.value = data[0].salesType;
-
-      var StoreId = document.querySelector(".storeNameInput");
-      StoreId.value = data[0].storeId;
-
-      // const UnitSetId = data[0].salesOrderDetails[0].UnitSetId;
-      // console.log("unite set id : ",UnitSetId);
-
-      // data[i].salesOrderDetails[i].UnitSetId;
-
-      var details = data[i].salesOrderDetails;
-
-      console.log("details sale", details);
-      console.log("data", data.length);
-
-      var bottomField = document.querySelector(".bottomField");
-      for (let i = 0; i < data.length; i++) {
-        var details = data[i].salesOrderDetails;
-        for (var j = 0; j < details.length; j++) {
-          var detail = details[j];
-          // AddBottomFieldRowdata(GoodsData);
-          console.log("bottom row coming.......");
-
-          // Create a new row element
-          var newRow = document.createElement("div");
-          newRow.className = "row bottomRow";
-
-          newRow.innerHTML = `
-          <div class="col col-auto" onclick="ShowGoodsData('${encodeURIComponent(
-            JSON.stringify()
-          )}')">
-            <i class="fa-solid fa-magnifying-glass SalesBottomFieldSearchIcon  SalesBottomFieldSearchIconColor"></i>
-          </div>
-          <div class=" col col-2 detailCol">${detail.goodsName}</div>
-          <div class="col detailCol">${detail.unitSetId}</div>
-          <div class="col detailCol">${detail.unitId}</div>
-          <div class="col detailCol">${20}</div>
-          <div class="col detailCol">${detail.salesOrderQty}</div>
-          <div class="col detailCol">${detail.salesOrderRate}</div>
-          <div class="col detailCol">${detail.discountPercentDetails}</div>
-          <div class="col detailCol">${detail.discountAmountDetails}</div>
-          <div class="col detailCol"></div>
-          <div class="col detailCol">${detail.remarksDetails}</div>
-        `;
-
-          bottomField.appendChild(newRow);
-        }
-      }
-    })
-    .catch((error) => {
-      // Handle any errors that occurred during the request
-      console.error(error);
-    });
-}
-
-function Clear() {
-  // Sales Order Master
-  // SalesOrderMasterId
-  // document.querySelector(".SalesOrderId").placeholder = " ";
-  // document.querySelector(".SalesOrderNo").placeholder = " ";
-  document.querySelector(".SalesOrderId").value = "";
-  // DisplayNo
-  document.querySelector(".SalesOrderNo").value = "";
-  // SalesOrderDate
-  document.querySelector(".SalesOrderDate").value = "";
-  //ClientId
-  document.querySelector(".clientinput").value = "";
-
-  // SalesOfferMasterId
-  document.querySelector(".SalesOrderOffer").value = "";
-  // EmployeeId
-  document.querySelector(".SalePersonButton").value = "";
-
-  // SalesType
-  document.querySelector(".SalesTypeButton").value = "";
-
-  // DiscountAmount
-  document.querySelector(".discountInput").value = "";
-
-  // DiscountPercent
-  document.querySelector(".discountPercentageInput").value = "";
-
-  // Remarks
-  document.querySelector("#myTextArea").value = "";
-  // StoreId
-  document.querySelector(".storeNameInput").value = "";
-
-  //SalesOfferDetailsId
-  document.querySelector(".SalesOrderOffer").value = "";
-
-  bottomClear();
-}
-
-//  bottom rows will be clear.......
-
-function bottomClear() {
-  const BottomRows = document.querySelectorAll(".bottomRow");
-
-  console.log("bottom rows length:  ", BottomRows.length);
-
-  for (let i = 0; i < BottomRows.length; i++) {
-    BottomRows[i].remove();
   }
 }
 
