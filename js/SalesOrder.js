@@ -528,10 +528,10 @@ function fetchData(salesOrderId) {
 
 function displayingFetchData(data) {
   // for geting sales Master data
-  var SalesOrderId = document.querySelector(".SalesOrderId");
-  SalesOrderId.placeholder = data[0].masterId;
-  var DisPlayno = document.querySelector(".SalesOrderNo");
-  DisPlayno.placeholder = data[0].displayNo;
+  // var SalesOrderId = document.querySelector(".SalesOrderId");
+  // SalesOrderId.placeholder = data[0].masterId;
+  // var DisPlayno = document.querySelector(".SalesOrderNo");
+  // DisPlayno.placeholder = data[0].displayNo;
 
   var value = data[0].salesOrderDate;
   console.log("dsahgshdag date", value);
