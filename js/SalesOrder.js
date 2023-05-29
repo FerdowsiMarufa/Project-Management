@@ -960,7 +960,6 @@ function Clear() {
   bottomClear();
 
 
-  bottomClear();
 }
 
 //  bottom rows will be clear.......
@@ -1450,4 +1449,6 @@ function GetingAllSalesOrder() {
                     `;
     }
   }
+}
+}
 }
