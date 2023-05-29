@@ -541,6 +541,7 @@ function addBottomFieldRow(GoodsString, event) {
   // selectedRow(event)
 
 
+
 }
 
 //by shihab
@@ -549,7 +550,7 @@ function AddBottomFieldRowdata(GoodsData) {
 
   // Create a new row element
   var newRow = document.createElement("div");
-  newRow.className = "row bottomRow detailstableRow rowSelection";
+  newRow.className = "row bottomRow detailstableRow rowSelection ";
 
 
   newRow.innerHTML = `
@@ -604,6 +605,9 @@ function AddBottomFieldRowdata(GoodsData) {
   }
 
 }
+
+
+
 
 
 
@@ -898,6 +902,7 @@ function saveData() {
       GoodsName,
     });
   }
+
   const formData = new FormData();
   formData.append("NewOrderMasterData", JSON.stringify(obj));
   formData.append("DetailsData", JSON.stringify(objDetails));
@@ -1240,6 +1245,10 @@ function tableValueForSalesOrder(event, masterId) {
 
 
 }
+
+
+
+
 
 // function tableValueForSalesOrder(event, masterId) {
 //   let clickedRow = event.target.closest(".row");

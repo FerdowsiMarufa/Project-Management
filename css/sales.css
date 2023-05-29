@@ -372,3 +372,13 @@
 .selected {
   background-color:  #b3cfdd;
 }
+
+/* .detailstableRow:hover , .UnitSetId input:hover {
+  background-color:  #f0e263;
+} */
+
+
+.row:hover .col {
+  /* Apply the desired hover styles to the columns */
+  background-color: #f0e263;
+}
