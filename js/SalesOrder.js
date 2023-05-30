@@ -324,7 +324,7 @@ function displayTopSalesField(
      <i class="fa-solid fa-plus" onclick="addBottomFieldRow('${encodeURIComponent(
        JSON.stringify(materialData)
      )}')"></i>
-     <i class="fa-solid fa-trash deleteButtonBottomField" onclick="deleteBottomFielOneRow()"></i>
+     <i class="fa-solid fa-trash deleteBtn"  onclick="deleteRowlast()"></i>
    </div>
 
 
@@ -759,73 +759,78 @@ function Saledropdown(
 
 //checking the field is null or not
 
-function addBottomFieldRow(GoodsString) {
-  var GoodsData = JSON.parse(decodeURIComponent(GoodsString));
-  console.log("Goodstring AddBottomFieldRow ", GoodsData);
-  const salesOrderIdInput = document.querySelector(".SalesOrderId").value;
+function addBottomFieldRow(GoodsString, event) {
+  function addBottomFieldRow(GoodsString) {
+    var GoodsData = JSON.parse(decodeURIComponent(GoodsString));
+    console.log("Goodstring AddBottomFieldRow ", GoodsData);
+    const salesOrderIdInput = document.querySelector(".SalesOrderId").value;
 
-  console.log("salesOrderIdValue", salesOrderIdInput);
+    console.log("salesOrderIdValue", salesOrderIdInput);
 
-  var salesOderID = document.querySelector(".SalesOrderNo").value;
-  var OderDate = document.querySelector(".SalesOrderDate").value;
-  var Client = document.querySelector(".SalesOrderClient").value;
-  var SalesPerson = document.querySelector(".SalesOrderPerson").value;
-  var SalesType = document.querySelector(".SalesOrderSalesType").value;
-  var StoreName = document.querySelector(".SalesOrderStoreName").value;
+    var salesOderID = document.querySelector(".SalesOrderNo").value;
+    var OderDate = document.querySelector(".SalesOrderDate").value;
+    var Client = document.querySelector(".SalesOrderClient").value;
+    var SalesPerson = document.querySelector(".SalesOrderPerson").value;
+    var SalesType = document.querySelector(".SalesOrderSalesType").value;
+    var StoreName = document.querySelector(".SalesOrderStoreName").value;
 
-  // var detailsTableRow = document.querySelector(".detailstableRow");
-  // console.log("details table length: ", detailsTableRow);
+    // const detailstableRow = document.querySelectorAll(".detailstableRow");
+    // console.log("lengthsdfjh",detailstableRow);
 
-  const detailstableRow = document.querySelectorAll(".detailstableRow");
-  console.log("lengthsdfjh", detailstableRow);
+    AddBottomFieldRowdata(GoodsData); // it will be in if condition..... when it truned in comminting.
 
-  AddBottomFieldRowdata(GoodsData);
+    //validation for giving row creation
 
-  // validation for giving row creation
-  // if (
-  //   detailstableRow.length > 0 && // Check if there is at least one row
-  //   (detailstableRow[detailstableRow.length - 1].querySelector(".goodsName").textContent === "Nut"
-  //   ||
-  //   detailstableRow[detailstableRow.length - 1].querySelector(".UnitSetId input").value.trim() !== ""
-  //   ||
-  //   detailstableRow[detailstableRow.length - 1].querySelector(".UnitId input").value.trim() !== "" ||
-  //   // detailstableRow[detailstableRow.length - 1].querySelector(".StockQuantity").textContent !== "" ||
-  //   detailstableRow[detailstableRow.length - 1].querySelector(".Quantity input").value.trim() !== "" ||
-  //   detailstableRow[detailstableRow.length - 1].querySelector(".Rate input").value.trim() !== "" ||
-  //   detailstableRow[detailstableRow.length - 1].querySelector(".discountPcts input").value.trim() !== "" ||
-  //   detailstableRow[detailstableRow.length - 1].querySelector(".discountAmount input").value.trim() !== "" ||
-  //   detailstableRow[detailstableRow.length - 1].querySelector(".remarks input").value.trim() !== "")
-  // ) {
-  //   alert("Fill the row");
-  // } else {
-  //   AddBottomFieldRowdata(GoodsData);
-  // }
+    const detailstableRow = document.querySelectorAll(".detailstableRow");
+    console.log("lengthsdfjh", detailstableRow);
 
-  // if (
-  //   salesOrderIdInput != "" &&
-  //   salesOderID != "" &&
-  //   OderDate != "" &&
-  //   Client != "" &&
-  //   SalesPerson != "" &&
-  //   SalesType != "" &&
-  //   StoreName != ""
-  // ) {
-  //   alert("it works");
-  //   AddBottomFieldRow();
-  // } else {
-  //   alert("fill the input please");
-  // }
-}
+    // if (
+    //   detailstableRow.length > 0 && // Check if there is at least one row
+    //   (detailstableRow[detailstableRow.length - 1].querySelector(".goodsName").textContent === "Nut"
+    //   ||
+    //   detailstableRow[detailstableRow.length - 1].querySelector(".UnitSetId input").value.trim() === ""
+    //   detailstableRow[detailstableRow.length - 1].querySelector(".UnitSetId input").value.trim() !== ""
+    //   ||
+    //   detailstableRow[detailstableRow.length - 1].querySelector(".UnitId input").value.trim() == "" ||
+    //   detailstableRow[detailstableRow.length - 1].querySelector(".StockQuantity").textContent == "" ||
+    //   detailstableRow[detailstableRow.length - 1].querySelector(".Quantity input").value.trim() == "" ||
+    //   detailstableRow[detailstableRow.length - 1].querySelector(".Rate input").value.trim() == "" ||
+    //   detailstableRow[detailstableRow.length - 1].querySelector(".discountPcts input").value == "" ||
+    //   detailstableRow[detailstableRow.length - 1].querySelector(".discountAmount input").value.trim() == "" ||
+    //   detailstableRow[detailstableRow.length - 1].querySelector(".remarks input").value.trim() == "")
+    // ){
+    //   alert("Fill the row");
+    // } else {
+    //   AddBottomFieldRowdata(GoodsData);
+    // }
 
-//by shihab
-function AddBottomFieldRowdata(GoodsData) {
-  var bottomField = document.querySelector(".bottomField");
+    // if (
+    //   salesOrderIdInput != "" &&
+    //   salesOderID != "" &&
+    //   OderDate != "" &&
+    //   Client != "" &&
+    //   SalesPerson != "" &&
+    //   SalesType != "" &&
+    //   StoreName != ""
+    // ) {
+    //   alert("it works");
+    //   AddBottomFieldRow();
+    // } else {
+    //   alert("fill the input please");
+    // }
 
-  // Create a new row element
-  var newRow = document.createElement("div");
-  newRow.className = "row bottomRow detailstableRow";
+    // selectedRow(event)
+  }
 
-  newRow.innerHTML = `
+  //by shihab
+  function AddBottomFieldRowdata(GoodsData) {
+    var bottomField = document.querySelector(".bottomField");
+
+    // Create a new row element
+    var newRow = document.createElement("div");
+    newRow.className = "row bottomRow detailstableRow rowSelection";
+
+    newRow.innerHTML = `
     <div class="col col-auto" onclick="ShowGoodsData('${encodeURIComponent(
       JSON.stringify(GoodsData)
     )}')">
@@ -833,69 +838,69 @@ function AddBottomFieldRowdata(GoodsData) {
     </div>
     <div class="col bottomCol col-2 goodsName" id="GoodsInput">Nut</div>
     <div class="col bottomCol UnitSetId"><input type="text" /></div>
-    <div class="col bottomCol UnitId"><input type="text" /></div>
+    <div class="col bottomCol UnitId"><input type="text"  value="Pcs" /></div>
     <div class="col bottomCol StockQuantity"></div>
     <div class="col bottomCol Quantity"><input type="text" /></div>
     <div class="col bottomCol Rate"><input type="text" /></div>
-    <div class="col bottomCol"><input type="text" class="discountPct" value="0" /></div>
+    <div class="col bottomCol discountPcts"><input type="text" class="discountPct " value="0" /></div>
     <div class="col bottomCol discountAmount"><input type="text" value="0" /></div>
     <div class="col bottomCol totalValue"></div>
     <div class="col bottomCol remarks"> <input  type ="text" value = " "></div>
   `;
 
-  bottomField.appendChild(newRow);
+    bottomField.appendChild(newRow);
 
-  // Get the input fields and relevant divs within the new row
-  const quantityInput = newRow.querySelector(".Quantity input");
-  const rateInput = newRow.querySelector(".Rate input");
-  const discountInput = newRow.querySelector(".discountPct");
-  const discountAmountInput = newRow.querySelector(".discountAmount input");
-  const totalValueDiv = newRow.querySelector(".totalValue");
+    // Get the input fields and relevant divs within the new row
+    const quantityInput = newRow.querySelector(".Quantity input");
+    const rateInput = newRow.querySelector(".Rate input");
+    const discountInput = newRow.querySelector(".discountPct");
+    const discountAmountInput = newRow.querySelector(".discountAmount input");
+    const totalValueDiv = newRow.querySelector(".totalValue");
 
-  // Add event listeners to the quantity, rate, and discount input fields
-  quantityInput.addEventListener("input", calculateTotal);
-  rateInput.addEventListener("input", calculateTotal);
-  discountInput.addEventListener("input", calculateTotal);
+    // Add event listeners to the quantity, rate, and discount input fields
+    quantityInput.addEventListener("input", calculateTotal);
+    rateInput.addEventListener("input", calculateTotal);
+    discountInput.addEventListener("input", calculateTotal);
 
-  // Function to calculate the total and discount amount
-  function calculateTotal() {
-    // Get the values from the quantity, rate, and discount input fields
-    const quantity = parseFloat(quantityInput.value) || 0;
-    const rate = parseFloat(rateInput.value) || 0;
-    const discount = parseFloat(discountInput.value) || 0;
+    // Function to calculate the total and discount amount
+    function calculateTotal() {
+      // Get the values from the quantity, rate, and discount input fields
+      const quantity = parseFloat(quantityInput.value) || 0;
+      const rate = parseFloat(rateInput.value) || 0;
+      const discount = parseFloat(discountInput.value) || 0;
 
-    // Calculate the total value and discount amount
-    const totalValue = quantity * rate;
-    const discountAmount = totalValue * (discount / 100);
-    if (discount > 0) {
-      const totalValueAfterDiscount = totalValue - discountAmount;
-      totalValueDiv.textContent = totalValueAfterDiscount.toFixed(2);
-      discountAmountInput.value = discountAmount.toFixed(2);
-    } else {
-      totalValueDiv.textContent = totalValue.toFixed(2);
+      // Calculate the total value and discount amount
+      const totalValue = quantity * rate;
+      const discountAmount = totalValue * (discount / 100);
+      if (discount > 0) {
+        const totalValueAfterDiscount = totalValue - discountAmount;
+        totalValueDiv.textContent = totalValueAfterDiscount.toFixed(2);
+        discountAmountInput.value = discountAmount.toFixed(2);
+      } else {
+        totalValueDiv.textContent = totalValue.toFixed(2);
+      }
     }
   }
-}
 
-function ShowGoodsData(GoodsString) {
-  document.querySelector("#popupSale").classList.toggle("active");
-  var GoodsData = JSON.parse(decodeURIComponent(GoodsString));
-  console.log("Goodstring", GoodsData);
-  console.log("function working..........");
+  function ShowGoodsData(GoodsString) {
+    document.querySelector("#popupSale").classList.toggle("active");
+    var GoodsData = JSON.parse(decodeURIComponent(GoodsString));
+    console.log("Goodstring", GoodsData);
+    console.log("function working..........");
 
-  var SalePopUpContainerTable = document.querySelector(
-    "#SalePopUpContainerTable"
-  );
+    var SalePopUpContainerTable = document.querySelector(
+      "#SalePopUpContainerTable"
+    );
 
-  SalePopUpContainerTable.innerHTML = `
+    SalePopUpContainerTable.innerHTML = `
         <div class="row Sale_1strow bg-light">
         <div class="col"> Goods Id</div>
         <div class="col"> SalesOfferDetailsId </div>
         <div class="col">Goods Name</div>
       </div> `;
 
-  for (var i = 0; i < GoodsData.length; i++) {
-    SalePopUpContainerTable.innerHTML += `
+    for (var i = 0; i < GoodsData.length; i++) {
+      SalePopUpContainerTable.innerHTML += `
                   <div class="row goodRow"  onclick="tableValueForGoods(event,${GoodsData[i].goodsId},'${GoodsData[i].goodsName}', ${GoodsData[i].approveQty})">
                   <div class="col">  ${GoodsData[i].goodsId}</div>
                   <div class="col d-none">  ${GoodsData[i].approveQty}</div>
@@ -903,104 +908,138 @@ function ShowGoodsData(GoodsString) {
                   <div class="col">  ${GoodsData[i].goodsName}</div>
                  </div>
                   `;
-  }
-}
-
-function tableValueForGoods(event, goodsId, goodsName, StockQuantity) {
-  console.log("Clicked goodsId:", goodsId);
-  console.log("Clicked goodsName:", goodsName);
-  console.log("Clicked StockQuantity:", StockQuantity);
-  const BottomRows = document.querySelectorAll(".bottomRow");
-
-  var GoodsNameColumn = document.querySelectorAll(".goodsName");
-  var StockQuantityColumn = document.querySelectorAll(".StockQuantity");
-
-  GoodsNameColumn[GoodsNameColumn.length - 1].innerText = goodsName;
-  StockQuantityColumn[StockQuantityColumn.length - 1].innerText = StockQuantity;
-  GoodsNameColumn[GoodsNameColumn.length - 1].setAttribute("id", goodsId);
-}
-// deleting the row
-
-// =========================working heree ........... to delete row
-// function deleteBottomFielOneRow() {
-//  // Assuming you have a button with a class "deleteButton" that triggers the row deletion
-//   const deleteButton = document.querySelector(".deleteButtonBottomField");
-
-//   // Add event listeners to the delete buttons
-
-//   deleteButton.addEventListener("click", deleteRow);
-
-//   // Function to delete the row
-//   function deleteRow(event) {
-//     const button = event.target;
-//     const row = button.closest(".row");
-
-//     // Remove the row element from the DOM
-//     row.remove();
-//   }
-
-//    console.log("fsdahsfdhdf");
-
-// }
-
-function deleteBottomFielOneRow() {
-  // Assuming you have a button with a class "deleteButton" that triggers the row deletion
-  const deleteButton = document.querySelector(".deleteButtonBottomField");
-
-  // Add event listeners to the delete buttons
-  deleteButton.addEventListener("click", deleteRow);
-
-  // Function to handle the delete event
-  function deleteRow(event) {
-    const button = event.target;
-    const row = button.closest(".row");
-
-    // Create a <delete> element
-    const deleteElement = document.createElement("delete");
-    deleteElement.textContent = "Delete";
-
-    // Replace the row element with the <delete> element
-    row.parentNode.replaceChild(deleteElement, row);
+    }
   }
 
-  console.log("fsdahsfdhdf");
-}
+  function tableValueForGoods(event, goodsId, goodsName, StockQuantity) {
+    selectedRow(event);
+    console.log("Clicked goodsId:", goodsId);
+    console.log("Clicked goodsName:", goodsName);
+    console.log("Clicked StockQuantity:", StockQuantity);
+    const BottomRows = document.querySelectorAll(".bottomRow");
 
-// Sales offer
+    var GoodsNameColumn = document.querySelectorAll(".goodsName");
+    var StockQuantityColumn = document.querySelectorAll(".StockQuantity");
 
-function GetingAllSalesOffer() {
-  document.querySelector("#popupSale").classList.toggle("active");
+    GoodsNameColumn[GoodsNameColumn.length - 1].innerText = goodsName;
+    StockQuantityColumn[StockQuantityColumn.length - 1].innerText =
+      StockQuantity;
+    GoodsNameColumn[GoodsNameColumn.length - 1].setAttribute("id", goodsId);
+  }
+  // deleting the row
 
-  //console.log("okay");
-  fetch(`https://localhost:7160/api/SalesOrder/GetAllSalesOffer`)
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("data", data);
-      const SalesOffer = [];
-      if (data.length > 0) {
-        data.forEach((item) => {
-          const obj = {};
-          obj.SalesOfferMasterId = item.salesOfferMasterId;
-          obj.SalesOfferDisplayNo = item.salesOfferDisplayNo;
-          obj.SalesOfferDate = item.salesOfferDate;
-          SalesOffer.push(obj);
-        });
-        ShowSalesOfferData(SalesOffer);
-        console.log("store data: ", SalesOffer);
-      } else {
-        alert(" SalesOffer not found");
+  // =========================working heree ........... to delete row
+
+  // function deleteBottomFielOneRow(event) {
+  //   // Assuming you have a button with a class "deleteButton" that triggers the row deletion
+  //   const deleteButton = document.querySelector(".deleteBtn");
+
+  //   // Add event listener to the delete button
+  //   deleteButton.addEventListener("click", function(event){
+  //      // Function to delete the last row
+
+  //      const rows = document.querySelectorAll(".row");
+  //      const lastRow = rows[rows.length - 1];
+
+  //      // Remove the last row element from the DOM
+  //      if (lastRow) {
+  //        lastRow.remove();
+  //      }
+
+  //   });
+
+  //    console.log("fsdahsfdhdf");
+
+  // }
+
+  function deleteBottomFielOneRow() {
+    // Assuming you have a button with a class "deleteButton" that triggers the row deletion
+    const deleteButton = document.querySelector(".deleteButtonBottomField");
+
+    //   console.log("fsdahsfdhdf");
+    // }
+
+    // const deleteButton = document.querySelector(".deleteBtn");
+    // deleteButton.addEventListener("click", function(event){
+
+    //   console.log("hfdhsfgdh click");
+    //   const rows = document.querySelectorAll(".row");
+    //   const lastRow = rows[rows.length - 1];
+    //   if (lastRow) {
+    //            lastRow.remove();
+    //          }
+    //   });
+
+    // last row geting changed.........
+    function deleteRowlast() {
+      const rows = document.querySelectorAll(".bottomRow");
+      console.log("bottomRow", rows);
+      console.log("rows.length", rows.length);
+      const lastRow = rows[rows.length - 1];
+      if (lastRow) {
+        // lastRow.remove();
+        lastRow.style.backgroundColor = "red";
       }
-    })
-    .catch((error) => console.error(error));
+    }
 
-  function ShowSalesOfferData(SalesOffer) {
-    //console.log("function working..........");
+    // function deleteBottomFielOneRow() {
+    //  // Assuming you have a button with a class "deleteButton" that triggers the row deletion
+    //   const deleteButton = document.querySelector(".deleteBtn");
 
-    var SalePopUpContainerTable = document.querySelector(
-      "#SalePopUpContainerTable"
-    );
+    //   // Add event listeners to the delete buttons
+    //   deleteButton.addEventListener("click", deleteRow);
 
-    SalePopUpContainerTable.innerHTML = `
+    //   // Function to handle the delete event
+    //   function deleteRow(event) {
+    //     const button = event.target;
+    //     const row = button.closest(".row");
+
+    //     // Create a <delete> element
+    //     const deleteElement = document.createElement("del");
+    //     deleteElement.textContent = "Delete";
+
+    //     // Replace the row element with the <delete> element
+    //     row.parentNode.replaceChild(deleteElement, row);
+    //   }
+
+    //   console.log("fsdahsfdhdf");
+    // }
+
+    // Sales offer
+
+    function GetingAllSalesOffer() {
+      document.querySelector("#popupSale").classList.toggle("active");
+
+      //console.log("okay");
+      fetch(`https://localhost:7160/api/SalesOrder/GetAllSalesOffer`)
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("data", data);
+          const SalesOffer = [];
+          if (data.length > 0) {
+            data.forEach((item) => {
+              const obj = {};
+              obj.SalesOfferMasterId = item.salesOfferMasterId;
+              obj.SalesOfferDisplayNo = item.salesOfferDisplayNo;
+              obj.SalesOfferDate = item.salesOfferDate;
+              SalesOffer.push(obj);
+            });
+            ShowSalesOfferData(SalesOffer);
+            console.log("store data: ", SalesOffer);
+          } else {
+            alert(" SalesOffer not found");
+          }
+        })
+        .catch((error) => console.error(error));
+
+      function ShowSalesOfferData(SalesOffer) {
+        //console.log("function working..........");
+
+        var SalePopUpContainerTable = document.querySelector(
+          "#SalePopUpContainerTable"
+        );
+
+        SalePopUpContainerTable.innerHTML = `
           <div class="row Sale_1strow bg-light">
 
           <div class="col"> Sales Offer Id </div>
@@ -1009,64 +1048,264 @@ function GetingAllSalesOffer() {
 
         </div> `;
 
-    for (var i = 0; i < SalesOffer.length; i++) {
-      SalePopUpContainerTable.innerHTML += `
+        for (var i = 0; i < SalesOffer.length; i++) {
+          SalePopUpContainerTable.innerHTML += `
                     <div class="row" onclick="tableValueForSalesOffer(event)" >
                     <div class="col">  ${SalesOffer[i].SalesOfferMasterId}</div>
                     <div class="col">  ${SalesOffer[i].SalesOfferDisplayNo}</div>
                     <div class="col">  ${SalesOffer[i].SalesOfferDate}</div>
                    </div>
                     `;
+        }
+      }
+    }
+
+    // end===============================
+
+    //BY shihab===========================================================
+
+    function SalePopupGetingValue(event) {
+      // tableValueForGoods(event);
+
+      tableValueForStores(event);
+
+      // tableValueForSalesOrder(event);
+
+      //  tableValueForSalesOffer(event);
+
+      document.querySelector("#popupSale").classList.remove("active");
+    }
+
+    // goods popup selected value.
+
+    // Store Name popup selected value.
+    function tableValueForStores(event) {
+      let clickedRow = event.target.closest(".row");
+      if (clickedRow) {
+        let rowNumber = Array.from(clickedRow.parentNode.children).indexOf(
+          clickedRow
+        );
+        let rowValues = Array.from(clickedRow.children).map(
+          (column) => column.innerHTML
+        );
+        console.log("Row Values:", rowValues);
+        console.log("Row Number:", rowNumber);
+
+        // Remove the 'selected' class from any previously selected rows
+        let selectedRows = document.querySelectorAll(".row.selected");
+        selectedRows.forEach((row) => row.classList.remove("selected"));
+
+        // Add the 'selected' class to the clicked row
+        clickedRow.classList.add("selected");
+
+        var storeNameInput = document.querySelector(".storeNameInput");
+        console.log("store: ", storeNameInput);
+
+        storeNameInput.value = rowValues[0];
+      } else {
+        console.log("No matching row found");
+      }
+    }
+
+    // SalesOrderId
+
+    let clickedRow = event.target.closest(".row");
+    if (clickedRow) {
+      bottomClear();
+      // console.log("masterId",masterId);
+      let rowNumber = Array.from(clickedRow.parentNode.children).indexOf(
+        clickedRow
+      );
+      let rowValues = Array.from(clickedRow.children).map(
+        (column) => column.innerHTML
+      );
+      console.log("Row Values:", rowValues);
+      console.log("Row Number:", rowNumber);
+
+      // Remove the 'selected' class from any previously selected rows
+      let selectedRows = document.querySelectorAll(".row.selected");
+      selectedRows.forEach((row) => row.classList.remove("selected"));
+
+      // Add the 'selected' class to the clicked row
+      clickedRow.classList.add("selected");
+
+      var SalesOrder = document.querySelector(".SalesOrderId");
+      console.log("store: ", SalesOrder);
+
+      SalesOrder.value = rowValues[1];
+
+      // const salesOrderId = 'SOM-0053'; // id marufa theke
+      const salesOrderId = SalesOrder.value;
+      console.log("salesOrderId hfdshj", salesOrderId);
+      // Replace with the sales order ID
+
+      fetch(
+        `https://localhost:7160/api/SalesOrder/GetOldSalesOrder/${salesOrderId}`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(" master data:", data);
+
+          // for geting sales Master data
+
+          // var DisPlayno = document.querySelector(".SalesOrderNo");
+          // DisPlayno.value = data[0].displayNo;
+
+          var value = data[0].salesOrderDate;
+          console.log("dsahgshdag date", value);
+          var date = new Date(value);
+          var formattedDate = date.toISOString().split("T")[0];
+          console.log("fgjfhdgj newDate: ", formattedDate);
+
+          var SalesOrderDate = document.querySelector(".SalesOrderDate");
+          SalesOrderDate.value = formattedDate;
+
+          var ClientId = document.querySelector(".clientinput");
+          ClientId.value = data[0].clientName;
+
+          var SalesOfferMasterId = document.querySelector(".SalesOrderOffer");
+          SalesOfferMasterId.value = data[0].salesOfferMasterId;
+          var SalesOrderPerson = document.querySelector(".SalesOrderPerson");
+
+          SalesOrderPerson.value = data[0].employeeName;
+          // var EmployeeId = document
+          // .querySelector(".SalePersonButton")
+          // .getAttribute("p");
+
+          var SalesType = document.querySelector(".SalesTypeButton");
+          SalesType.value = data[0].salesType;
+
+          var StoreId = document.querySelector(".storeNameInput");
+          StoreId.value = data[0].storeId;
+
+          // const UnitSetId = data[0].salesOrderDetails[0].UnitSetId;
+          // console.log("unite set id : ",UnitSetId);
+
+          // data[i].salesOrderDetails[i].UnitSetId;
+
+          var details = data[i].salesOrderDetails;
+
+          console.log("details sale", details);
+          console.log("data", data.length);
+
+          var bottomField = document.querySelector(".bottomField");
+          for (let i = 0; i < data.length; i++) {
+            var details = data[i].salesOrderDetails;
+            for (var j = 0; j < details.length; j++) {
+              var detail = details[j];
+              // AddBottomFieldRowdata(GoodsData);
+              console.log("bottom row coming.......");
+
+              // Create a new row element
+              var newRow = document.createElement("div");
+              newRow.className = "row bottomRow";
+
+              newRow.innerHTML = `
+            <div class="col col-auto" onclick="ShowGoodsData('${encodeURIComponent(
+              JSON.stringify()
+            )}')">
+              <i class="fa-solid fa-magnifying-glass SalesBottomFieldSearchIcon  SalesBottomFieldSearchIconColor"></i>
+            </div>
+            <div class=" col col-2 detailCol">${detail.goodsName}</div>
+            <div class="col detailCol">${detail.unitSetId}</div>
+            <div class="col detailCol">${detail.unitId}</div>
+            <div class="col detailCol">${20}</div>
+            <div class="col detailCol">${detail.salesOrderQty}</div>
+            <div class="col detailCol">${detail.salesOrderRate}</div>
+            <div class="col detailCol">${detail.discountPercentDetails}</div>
+            <div class="col detailCol">${detail.discountAmountDetails}</div>
+            <div class="col detailCol"></div>
+            <div class="col detailCol">${detail.remarksDetails}</div>
+          `;
+
+              bottomField.appendChild(newRow);
+            }
+          }
+        })
+        .catch((error) => {
+          // Handle any errors that occurred during the request
+          console.error(error);
+        });
+    } else {
+      console.log("No matching row found");
     }
   }
 }
 
-// end===============================
-
-//BY shihab===========================================================
-
-function SalePopupGetingValue(event) {
-  // tableValueForGoods(event);
-
-  tableValueForStores(event);
-
-  // tableValueForSalesOrder(event);
-
-  //  tableValueForSalesOffer(event);
-
-  document.querySelector("#popupSale").classList.remove("active");
-}
-
-// goods popup selected value.
-
-// Store Name popup selected value.
-function tableValueForStores(event) {
-  let clickedRow = event.target.closest(".row");
-  if (clickedRow) {
-    let rowNumber = Array.from(clickedRow.parentNode.children).indexOf(
-      clickedRow
-    );
-    let rowValues = Array.from(clickedRow.children).map(
-      (column) => column.innerHTML
-    );
-    console.log("Row Values:", rowValues);
-    console.log("Row Number:", rowNumber);
-
-    // Remove the 'selected' class from any previously selected rows
-    let selectedRows = document.querySelectorAll(".row.selected");
-    selectedRows.forEach((row) => row.classList.remove("selected"));
-
-    // Add the 'selected' class to the clicked row
-    clickedRow.classList.add("selected");
-
-    var storeNameInput = document.querySelector(".storeNameInput");
-    console.log("store: ", storeNameInput);
-
-    storeNameInput.value = rowValues[0];
-  } else {
-    console.log("No matching row found");
-  }
-}
+// function tableValueForSalesOrder(event, masterId) {
+//   let clickedRow = event.target.closest(".row");
+//   if (clickedRow) {
+//     // console.log("masterId",masterId);
+//     let rowNumber = Array.from(clickedRow.parentNode.children).indexOf(
+//       clickedRow
+//     );
+//     let rowValues = Array.from(clickedRow.children).map(
+//       (column) => column.innerHTML
+//     );
+//     console.log("Row Values:", rowValues);
+//     console.log("Row Number:", rowNumber);
+//     // Remove the 'selected' class from any previously selected rows
+//     let selectedRows = document.querySelectorAll(".row.selected");
+//     selectedRows.forEach((row) => row.classList.remove("selected"));
+//     // Add the 'selected' class to the clicked row
+//     clickedRow.classList.add("selected");
+//     var SalesOrder = document.querySelector(".SalesOrderId");
+//     console.log("store: ", SalesOrder);
+//     SalesOrder.value = rowValues[1];
+//     // const salesOrderId = 'SOM-0053'; // id marufa theke
+//     const salesOrderId = SalesOrder.value;
+//     console.log("salesOrderId hfdshj", salesOrderId);
+//     // Replace with the sales order ID
+//     // ...
+//     fetch(
+//       `https://localhost:7160/api/SalesOrder/GetOldSalesOrder/${salesOrderId}`
+//     )
+//       .then((response) => response.json())
+//       .then((data) => {
+//         console.log("master data:", data);
+//         console.log("data length:", data.length);
+//         // ... other code ...
+//         for (let i = 0; i < data.length; i++) {
+//           var details = data[i].salesOrderDetails;
+//           console.log("details sale", details);
+//           console.log("details length: ", details.length);
+//           var bottomField = document.querySelector(".bottomField");
+//           for (var j = 0; j < details.length; j++) {
+//             var detail = details[j];
+//             // AddBottomFieldRowdata(GoodsData);
+//             console.log("bottom row coming.......");
+//             // Create a new row element
+//             var newRow = document.createElement("div");
+//             newRow.className = "row bottomRow";
+//             newRow.innerHTML = `
+//           <div class="col col-auto" onclick="ShowGoodsData('${encodeURIComponent(
+//             JSON.stringify()
+//           )}')">
+//             <i class="fa-solid fa-magnifying-glass SalesBottomFieldSearchIcon  SalesBottomFieldSearchIconColor"></i>
+//           </div>
+//           <div class=" col col-2 detailCol">${detail.goodsName}</div>
+//           <div class="col detailCol">${detail.unitSetId}</div>
+//           <div class="col detailCol">${detail.unitId}</div>
+//           <div class="col detailCol">${20}</div>
+//           <div class="col detailCol">${detail.salesOrderQty}</div>
+//           <div class="col detailCol">${detail.salesOrderRate}</div>
+//           <div class="col detailCol">${detail.discountPercentDetails}</div>
+//           <div class="col detailCol">${detail.discountAmountDetails}</div>
+//           <div class="col detailCol"></div>
+//           <div class="col detailCol">${detail.remarksDetails}</div>
+//         `;
+//             bottomField.appendChild(newRow);
+//           }
+//         }
+//       })
+//       .catch((error) => {
+//         // Handle any errors that occurred during the request
+//         console.error(error);
+//       });
+//   } else {
+//     console.log("No matching row found");
+//   }
+// }
 
 //  Showing Popup...
 
@@ -1098,7 +1337,6 @@ function DisplaySaleMasterData(MasterData) {
 }
 
 // SalesOffre
-
 function tableValueForSalesOffer(event) {
   let clickedRow = event.target.closest(".row");
   if (clickedRow) {
@@ -1124,6 +1362,27 @@ function tableValueForSalesOffer(event) {
     SalesOfferInput.value = rowValues[0];
   } else {
     console.log("No matching row found");
+  }
+}
+
+function selectedRow(event) {
+  let clickedRow = event.target.closest(".row");
+  if (clickedRow) {
+    let rowNumber = Array.from(clickedRow.parentNode.children).indexOf(
+      clickedRow
+    );
+    let rowValues = Array.from(clickedRow.children).map(
+      (column) => column.innerHTML
+    );
+    console.log("Row Values:", rowValues);
+    console.log("Row Number:", rowNumber);
+
+    // Remove the 'selected' class from any previously selected rows
+    let selectedRows = document.querySelectorAll(".row.selected");
+    selectedRows.forEach((row) => row.classList.remove("selected"));
+
+    // Add the 'selected' class to the clicked row
+    clickedRow.classList.add("selected");
   }
 }
 
@@ -1181,84 +1440,3 @@ function GetingAllSalesOrder() {
     }
   }
 }
-
-// lagbe naa
-
-// function addDataToMasterTable() {}
-
-// function displayOldData() {
-//   const displayMasterTableData = [];
-//   var id = 1;
-//   fetch(`https://localhost:7160/api/SalesOrder/GetOldSalesOrder/${id}`)
-//     .then((response) => response.json())
-//     .then((data) => {
-//       console.log(" oldData", data);
-//       if (data.length) {
-//         const obj = [];
-//         data.forEach((item) => {
-//           obj.SalesOrderMasterId = item.salesOrderMasterId;
-//           obj.SalesOrderDetailsId = item.salesOrderDetailsId;
-//           obj.SalesOfferMasterId = item.salesOfferMasterId;
-//           obj.SalesOrderQty = item.salesOrderQty;
-//           obj.Remarks = item.remarks;
-//           obj.SalesType = item.salesType;
-//           obj.DiscountAmount = item.discountAmount;
-//           obj.SalesOrderRate = item.salesOrderRate;
-//           obj.EmployeeId = item.employeeId;
-//           obj.DiscountPercent = item.discountPercent;
-//           obj.ClientName = item.clientName;
-//           obj.EmployeeName = item.employeeName;
-//           obj.DiscountPercent = item.discountPercent;
-//           displayMasterTableData.push(obj);
-//         });
-//       }
-//       AddBottomFieldRow();
-//       displayData(displayMasterTableData);
-//       console.log("displayMasterTableData", displayMasterTableData);
-//     })
-//     .catch((error) => console.error(error));
-
-//   //displaying tha data
-//   function displayData() {
-//     var SalesOrderId = document.querySelector(".SalesOrderId");
-//     // Get the value of the input
-//     SalesOrderId.value = displayMasterTableData[0].SalesOfferMasterId;
-
-//     var SalesOrderNo = document.querySelector(".SalesOrderNo");
-//     // Get the value of the input
-//     SalesOrderNo.value = displayMasterTableData[0].SalesOrderDetailsId;
-
-//     var SalesOrderOffer = document.querySelector(".SalesOrderOffer");
-//     // Get the value of the input
-//     SalesOrderOffer.value = displayMasterTableData[0].SalesOrderMasterId;
-
-//     var remarks = document.querySelector(".Remarks");
-//     // Get the value of the input
-//     remarks.value = displayMasterTableData[0].Remarks;
-
-//     var salesOrderSalesType = document.querySelector(".SalesOrderSalesType");
-//     // Get the value of the input
-//     salesOrderSalesType.value = displayMasterTableData[0].SalesType;
-
-//     //client anme
-//     var SalesOrderClient = document.querySelector("#SalesOrderClient");
-//     SalesOrderClient.value = displayMasterTableData[0].ClientName;
-//     //emplyeename
-//     var SalesOrderPerson = document.querySelector("#SalesOrderPerson");
-//     SalesOrderPerson.value = displayMasterTableData[0].EmployeeName;
-//     //storeName
-
-//     // var salesOrderSalesType = document.querySelector(".SalesOrderSalesType");
-
-//     document.querySelector(".discountAmount").value =
-//       displayMasterTableData[0].DiscountAmount;
-//     // var GoodsName = document.getElementById("goodsName").querySelector("input").value;
-
-//     document.getElementById("Qty").querySelector("input").value =
-//       displayMasterTableData[0].SalesOrderQty;
-//     document.getElementById("Rate").querySelector("input").value =
-//       displayMasterTableData[0].SalesOrderRate;
-//     document.getElementById("Discount").querySelector("input").value =
-//       displayMasterTableData[0].DiscountPercent;
-//   }
-// }
